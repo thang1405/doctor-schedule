@@ -1,0 +1,22 @@
+.menu-item {
+  padding: 75px 126px;
+  /* margin: 20px 20px; */
+  user-select: none;
+  cursor: pointer;
+  border: none;
+  border: 1px solid white;
+  background-color: #ff8f00;
+  color: white;
+  border-radius: 5px;
+}
+.menu-item:focus {
+  outline:none !important;
+}
+
+.scroll-menu-arrow {
+  /* margin: 10px; */
+  cursor: pointer;
+}
+*:focus {
+  outline:none !important
+}
