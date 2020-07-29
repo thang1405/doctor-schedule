@@ -1,6 +1,12 @@
 .footer{
   background-color: #1976d2;
-  height : 50px
+  position: fixed;
+  height : 50px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+  width: 100%;
 }
 .icon{
   font-size: 30px;

@@ -12,7 +12,6 @@ import {
 
 const TopMenu = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
 
   return (

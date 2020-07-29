@@ -6,7 +6,7 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from "reactstrap";
-import "../css/SlideShow.css";
+import "../css/Slider.css";
 
 const items = [
   {
@@ -31,7 +31,7 @@ const items = [
   },
 ];
 
-const SlideShow = (props) => {
+const Slider = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -71,7 +71,7 @@ const SlideShow = (props) => {
   });
 
   return (
-    <div>
+    <div className='containerDiv'>
       <Carousel activeIndex={activeIndex} next={next} previous={previous}>
         <CarouselIndicators
           items={items}
@@ -96,4 +96,4 @@ const SlideShow = (props) => {
   );
 };
 
-export default SlideShow;
+export default Slider;

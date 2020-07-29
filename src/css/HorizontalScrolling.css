@@ -1,10 +1,9 @@
 .menu-item {
-  padding: 75px 126px;
-  /* margin: 20px 20px; */
+  padding: 75px 120px;
+  margin: 10px;
   user-select: none;
   cursor: pointer;
   border: none;
-  border: 1px solid white;
   background-color: #ff8f00;
   color: white;
   border-radius: 5px;
@@ -14,9 +13,13 @@
 }
 
 .scroll-menu-arrow {
-  /* margin: 10px; */
+  padding: 5px;
   cursor: pointer;
 }
 *:focus {
   outline:none !important
+}
+.arrow{
+  font-size: 32px ;
+  color: #1976d2;
 }

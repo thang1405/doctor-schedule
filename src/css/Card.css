@@ -1,0 +1,9 @@
+.card-main{
+  height : 600px;
+  margin-bottom:20px
+}
+.card-button{
+  position: absolute;
+  bottom: 30px;
+  right: 45px;
+}
