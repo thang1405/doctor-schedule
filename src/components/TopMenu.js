@@ -25,7 +25,7 @@ const TopMenu = (props) => {
               <NavLink href="/">Trang chủ</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/doctor/">Bác sĩ</NavLink>
+              <NavLink href="/doctor">Bác sĩ</NavLink>
             </NavItem>
           </Nav>
           <NavbarText>Doctor Schedule</NavbarText>

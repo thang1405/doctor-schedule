@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
 import axios from 'axios'
-import { Layout, Breadcrumb } from 'antd'
+import { Breadcrumb } from 'antd'
+import { Link } from 'react-router-dom'
 
-import Footer from '../components/Footer'
 import SearchInput from '../components/SearchInput'
 import DoctorCard from '../components/DoctorCard'
 import Pagination from '../components/Pagination'
-
-const { Content } = Layout
 
 function Doctor() {
   const [doctors, setDoctors] = useState([])
@@ -19,7 +17,7 @@ function Doctor() {
   })
   const [filters, setFilter] = useState({
     _page: 1,
-    _limit: 10
+    _limit: 10,
   })
   useEffect(() => {
     axios
@@ -27,21 +25,21 @@ function Doctor() {
       .then((res) => {
         const { data } = res
         // console.log(res);
-        setDoctors(data);
+        setDoctors(data)
         setPagination({
-          ...pagination,_page : filters._page
-        });
+          ...pagination,
+          _page: filters._page,
+        })
       })
       .catch((error) => {
         console.log(error)
       })
-  }, [filters]);
+  }, [filters])
 
   const handerPageChange = (newPage) => {
-    console.log(newPage);
     setFilter({
       ...filters,
-      _page : newPage
+      _page: newPage,
     })
   }
 
@@ -60,12 +58,13 @@ function Doctor() {
       <Row>
         {doctors.map((item) => (
           <Col sm="6">
-            <DoctorCard info={item} />
+            <Link to={`/doctor/${item.id}`}>
+              <DoctorCard info={item} />
+            </Link>
           </Col>
         ))}
         <Pagination pagination={pagination} onPageChange={handerPageChange} />
       </Row>
-      <Footer />
     </Container>
   )
 }
