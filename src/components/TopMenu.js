@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   Collapse,
   Navbar,
@@ -7,16 +7,16 @@ import {
   Nav,
   NavItem,
   NavLink,
-  NavbarText
-} from 'reactstrap';
+} from 'reactstrap'
+import SearchInput from '../components/SearchInput'
 
 const TopMenu = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+  const [isOpen, setIsOpen] = useState(false)
+  const toggle = () => setIsOpen(!isOpen)
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">NEEL</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -28,11 +28,15 @@ const TopMenu = (props) => {
               <NavLink href="/doctor">Bác sĩ</NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Doctor Schedule</NavbarText>
+          <Nav>
+            <NavItem>
+              <SearchInput placeholder="Nhập tên bác sĩ" />
+            </NavItem>
+          </Nav>
         </Collapse>
       </Navbar>
     </div>
-  );
+  )
 }
 
-export default TopMenu;
+export default TopMenu
