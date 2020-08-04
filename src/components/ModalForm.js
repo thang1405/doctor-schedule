@@ -3,7 +3,8 @@ import React from 'react'
 
 import '../css/ModalForm.css'
 
-export default function ModalForm({ visible, onCreate, onCancel, info }) {
+export default function ModalForm(props) {
+  const { visible, onCreate, onCancel, info } = props
   const { workTime, first_name, last_name } = info
   let optionToRender
 
@@ -23,7 +24,7 @@ export default function ModalForm({ visible, onCreate, onCancel, info }) {
     <div className="button-schedule">
       <Modal
         title={`${first_name} ${last_name}`}
-        style={{ top: 10 }}
+        style={{ top: 0 }}
         width={650}
         visible={visible}
         okText="Xác nhận"
@@ -50,20 +51,49 @@ export default function ModalForm({ visible, onCreate, onCancel, info }) {
         >
           <Form.Item
             label="Họ tên"
-            hasFeedback
             name="name"
-            rules={[{ required: true, message: 'Please select' }]}
+            hasFeedback
+            rules={[
+              {
+                pattern:/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/,
+                required: true,
+                message: 'Vui lòng nhập lại!',
+              },
+            ]}
           >
             <Input />
           </Form.Item>
-          <Form.Item label="Email" name="email">
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                type: 'email',
+                message: 'Vui lòng nhập lại!',
+              },
+            ]}
+          >
             <Input />
           </Form.Item>
           <Form.Item
             label="Số điện thoại"
             name="phoneNumber"
             hasFeedback
-            rules={[{ required: true, message: 'Please select' }]}
+            rules={[
+              {
+                required:true,
+                pattern:/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+                message: 'Vui lòng nhập đầy đủ là số',
+              }
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Địa chỉ"
+            hasFeedback
+            name="address"
+            rules={[{ required: true, message: 'Vui lòng nhập lại' }]}
           >
             <Input />
           </Form.Item>
@@ -71,27 +101,27 @@ export default function ModalForm({ visible, onCreate, onCancel, info }) {
             label="Giới tính"
             name="gender"
             hasFeedback
-            rules={[{ required: true, message: 'Please select your gender!' }]}
+            rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
           >
             <Select>
-              <Select.Option value="male">Nam</Select.Option>
-              <Select.Option value="female">Nữ</Select.Option>
-              <Select.Option value="orther">Khác</Select.Option>
+              <Select.Option value="Male">Nam</Select.Option>
+              <Select.Option value="Female">Nữ</Select.Option>
+              <Select.Option value="Orther">Khác</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item
-            label="DatePicker"
+            label="Chọn ngày"
             name="date"
             hasFeedback
-            rules={[{ required: true, message: 'Please select' }]}
+            rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
           >
             <DatePicker />
           </Form.Item>
           <Form.Item
             label="Thời gian làm việc"
-            name="timeWork"
+            name="time_work_id"
             hasFeedback
-            rules={[{ required: true, message: 'Please select ' }]}
+            rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
           >
             <Select placeholder="Time">{optionToRender}</Select>
           </Form.Item>

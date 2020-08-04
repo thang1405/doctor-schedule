@@ -15,12 +15,5 @@ export const getParams = (params) => {
 }
 
 export const postSchedule = (data) => {
-  fetcher
-    .post(`/medical-schedule`, { data })
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((e) => {
-      console.log(e)
-    })
+  return fetcher.post(`/medical-schedule`, data)
 }

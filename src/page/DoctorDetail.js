@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { Breadcrumb, Avatar, Row, Col, Button } from 'antd'
+import { Breadcrumb, Avatar, Row, Col, Button, message } from 'antd'
+import moment from 'moment'
 
 import ModalForm from '../components/ModalForm'
 import '../css/Doctor.css'
 
 import { getId } from '../service/DoctorServices'
+import { postSchedule } from '../service/ScheduleServices'
 
 function DoctorDetail({ match }) {
   const [doctor, setDoctor] = useState({})
   const [visible, setVisible] = useState(false)
-  const [schedule, setSchedule] = useState({
-    
-  })
+
   useEffect(() => {
     getId(match.params.id)
       .then((res) => {
@@ -25,16 +25,32 @@ function DoctorDetail({ match }) {
       })
   }, [match])
 
-  const onCreate = (values) => {
-    //console.log('Received values of form: ', values)
-    setSchedule(values) ;
-    setSchedule(prev =>({
-      ...prev,
-      doctor_id:match.params.id
-    })) ;
+  const onCreateSchedule = (values) => {
+    const date = moment(values.date).format('YYYY-MM-DD')
+
+    const data = {
+      doctor_id: parseInt(match.params.id),
+      time_work_id: values.time_work_id,
+      date: date,
+      name: values.name,
+      gender: values.gender,
+      phoneNumber: values.phoneNumber,
+      address: values.address,
+      reason: values.reason,
+    }
+    postSchedule(data)
+      .then((res) => {
+        console.log(res)
+        message.success('Đăng ký lịch khám thành công')
+      })
+      .catch((e) => {
+        console.log(e)
+        message.error('Đăng ký lịch khám thất bại')
+      })
+
     setVisible(false)
   }
-  // console.log(schedule)
+
   return (
     <Container>
       <Row>
@@ -74,7 +90,7 @@ function DoctorDetail({ match }) {
           <ModalForm
             info={doctor}
             visible={visible}
-            onCreate={onCreate}
+            onCreate={onCreateSchedule}
             onCancel={() => {
               setVisible(false)
             }}
