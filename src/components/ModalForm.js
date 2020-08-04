@@ -125,7 +125,7 @@ export default function ModalForm(props) {
           >
             <Select placeholder="Time">{optionToRender}</Select>
           </Form.Item>
-          <Form.Item label="Lý do" hasFeedback name="reason">
+          <Form.Item label="Lý do" name="reason">
             <Input.TextArea rows={4} />
           </Form.Item>
         </Form>
