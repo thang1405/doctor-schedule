@@ -28,7 +28,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "react-scripts dev"
+    "dev": "react-scripts dev --output public"
     
   },
   "eslintConfig": {
