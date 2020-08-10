@@ -3,11 +3,12 @@ import { Row, Col, Container } from 'reactstrap'
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 
-import DoctorCard from '../components/DoctorCard'
-import PaginationCustom from '../components/Pagination'
-import '../css/Doctor.css';
+import TopMenu from '../../components/TopMenu'
+import DoctorCard from '../../components/DoctorCard'
+import PaginationCustom from '../../components/Pagination'
+import '../../css/Doctor.css';
 
-import { getParams, getAll } from '../service/DoctorServices'
+import { getParams, getAll } from '../../service/DoctorServices'
 
 function Doctor() {
   const [doctors, setDoctors] = useState([])
@@ -56,6 +57,8 @@ function Doctor() {
   }
 
   return (
+    <div>
+    <TopMenu/>
     <Container className='main'>
       <Row>
         <Col className='bread-crumb'>
@@ -83,6 +86,7 @@ function Doctor() {
         />
       </Row>
     </Container>
+    </div>
   )
 }
 

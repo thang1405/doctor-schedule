@@ -18,7 +18,6 @@ function Login() {
   })
 
   const onFinish = (values) => {
-    console.log(values)
     loginAdmin(values)
       .then((res) => {
         const token = res.data.access_token
@@ -37,7 +36,7 @@ function Login() {
   }
 
   if (login.loggedIn) {
-    return <Redirect to="/admin/main" />
+    return <Redirect to="/admin/home" />
   }
 
   return (

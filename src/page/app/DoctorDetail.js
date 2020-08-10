@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 import { Breadcrumb, Avatar, Row, Col, Button, message } from 'antd'
 import moment from 'moment'
 
-import ModalForm from '../components/ModalForm'
-import '../css/Doctor.css'
+import ModalForm from '../../components/ModalForm'
+import TopMenu from '../../components/TopMenu'
+import '../../css/Doctor.css'
 
-import { getId } from '../service/DoctorServices'
-import { postSchedule } from '../service/ScheduleServices'
+import { getId } from '../../service/DoctorServices'
+import { postSchedule } from '../../service/ScheduleServices'
 
 function DoctorDetail({ match }) {
   const [doctor, setDoctor] = useState({})
@@ -52,6 +53,7 @@ function DoctorDetail({ match }) {
   }
 
   return (
+    <div><TopMenu/>
     <Container>
       <Row>
         <Col className="bread-crumb">
@@ -98,6 +100,7 @@ function DoctorDetail({ match }) {
         </Col>
       </Row>
     </Container>
+    </div>
   )
 }
 

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import {Container} from 'reactstrap';
+import { Redirect } from 'react-router-dom'
+import { Container } from 'reactstrap'
 
+import LeftMenu from '../../components/LeftMenu'
 function Main(props) {
   const token = localStorage.getItem('token')
 
@@ -14,10 +15,12 @@ function Main(props) {
     return <Redirect to="/admin" />
   }
   return (
-    <Container>
-      <h2>hi !! admin</h2>
-      <Link to="/admin/logout">Logout</Link>
-    </Container>
+    <div>
+      <LeftMenu />
+      <Container>
+        <h2>Chào admin , đây là giao diện admin tạm thời</h2>
+      </Container>
+    </div>
   )
 }
 
