@@ -42,8 +42,7 @@ function Login() {
   return (
     <Container>
       <h1>Admin Login</h1>
-      <p>username neel@email.com </p>
-      <p>password neel </p>
+      <p>username neel password neel </p>
       <Form
         {...layout}
         name="login"
@@ -51,8 +50,8 @@ function Login() {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="Email"
-          name="email"
+          label="Username"
+          name="username"
           rules={[{ required: true, message: 'Please input your username!' }]}
         >
           <Input />

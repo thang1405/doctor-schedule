@@ -6,6 +6,7 @@ import {Breadcrumb} from 'antd';
 import LeftMenu from '../../components/LeftMenu'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
+import {notificationErrorNetwork} from '../../util/notification';
 
 import { getParams, getAll } from '../../service/DoctorServices'
 
@@ -45,6 +46,7 @@ function ManageDoctor(props) {
       })
       .catch((e) => {
         console.log(e)
+        notificationErrorNetwork()
       })
   }, [])
   //check login
@@ -90,6 +92,8 @@ function ManageDoctor(props) {
               </Link>
             </Col>
           ))}
+        </Row>
+        <Row>
           <PaginationCustom
             pagination={pagination}
             onPageChange={handerPageChange}

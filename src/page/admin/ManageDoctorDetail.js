@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { Breadcrumb, Avatar, Row, Col, Button } from 'antd'
+import { Breadcrumb, Avatar, Row, Col, Button, message } from 'antd'
+import { useHistory } from "react-router-dom";
 
 import '../../css/Doctor.css'
 import LeftMenu from '../../components/LeftMenu'
-import { getId } from '../../service/DoctorServices'
 import ModalFormRepair from '../../components/ModalFormRepair'
+import {
+  getId,
+  repairInfoDoctor,
+  deleteDoctor,
+} from '../../service/DoctorServices'
 
 function ManageDoctorDetail({ match }) {
   const [doctor, setDoctor] = useState({})
   const [visible, setVisible] = useState(false)
+
+  const history = useHistory();
 
   useEffect(() => {
     getId(match.params.id)
@@ -24,8 +31,35 @@ function ManageDoctorDetail({ match }) {
   }, [match])
 
   const onRepair = (values) => {
-    console.log(values)
-    setVisible(false)
+    const time = values.workTime.map((item) => {
+      return [item[0].format('HH:mm'), item[1].format('HH:mm')]
+    })
+    const data = {
+      first_name: values.first_name,
+      last_name: values.last_name,
+      address: values.address,
+      workTime: time,
+      description: values.description,
+      price: values.price,
+    }
+    repairInfoDoctor(data, match.params.id)
+      .then((res) => {
+        message.success('Đổi thông tin thành công')
+        setVisible(false)
+        window.location.reload();
+      })
+      .catch((e) => {
+        message.error('Đổi thông tin thất bại')
+        console.log(e)
+      })
+  }
+
+  const onDelete= ()=>{
+    deleteDoctor(match.params.id).then(()=>{
+      history.push("/admin/manage-doctor");
+    }).catch(e=>{
+      console.log(e)
+    })
   }
 
   return (
@@ -57,7 +91,7 @@ function ManageDoctorDetail({ match }) {
             <p>Địa chỉ : {doctor.address}</p>
           </Col>
           <Col span={8}>
-            <Button>Xóa</Button>
+            <Button onClick={onDelete}>Xóa</Button>
             <Button
               onClick={() => {
                 setVisible(true)

@@ -31,8 +31,8 @@ function DoctorDetail({ match }) {
 
     const data = {
       doctor_id: parseInt(match.params.id),
-      time_work_id: values.time_work_id,
       date: date,
+      time_work: values.time_work,
       name: values.name,
       gender: values.gender,
       phoneNumber: values.phoneNumber,

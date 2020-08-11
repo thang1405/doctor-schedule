@@ -9,10 +9,10 @@ export default function ModalForm(props) {
   let optionToRender
 
   if (workTime) {
-    optionToRender = workTime.map((item) => {
+    optionToRender = workTime.map((item,index) => {
       return (
-        <Select.Option value={item.id} key={item.id}>
-          {item.time_start} - {item.time_end}
+        <Select.Option value={index} key={index}>
+          {item[0]} - {item[1]}
         </Select.Option>
       )
     })
@@ -119,7 +119,7 @@ export default function ModalForm(props) {
           </Form.Item>
           <Form.Item
             label="Thời gian làm việc"
-            name="time_work_id"
+            name="time_work"
             hasFeedback
             rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
           >
