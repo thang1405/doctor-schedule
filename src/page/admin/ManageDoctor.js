@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
-import { Link, Redirect } from 'react-router-dom'
-import {Breadcrumb} from 'antd';
+import { Redirect ,Link} from 'react-router-dom'
+import { Empty } from 'antd'
 
 import LeftMenu from '../../components/LeftMenu'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
-import {notificationErrorNetwork} from '../../util/notification';
+import { notificationErrorNetwork } from '../../util/notification'
+import '../../css/Doctor.css'
 
 import { getParams, getAll } from '../../service/DoctorServices'
 
@@ -15,7 +16,7 @@ function ManageDoctor(props) {
   const [pagination, setPagination] = useState({
     _page: 1,
     _limit: 9,
-    _totalRow: 1,
+    _totalRow: 0,
   })
   const [filter, setFilter] = useState({
     _page: 1,
@@ -68,22 +69,19 @@ function ManageDoctor(props) {
     })
   }
 
+  if (!pagination._totalRow) {
+    return (
+      <div>
+        <LeftMenu />
+        <Empty className="emplty" />
+      </div>
+    )
+  }
+
   return (
-    <div>
+    <div className='main'>
       <LeftMenu />
       <Container>
-        <Row>
-          <Col className="bread-crumb">
-            <Breadcrumb style={{ margin: '10px 0' }}>
-              <Breadcrumb.Item>
-                <Link to={'/admin'}>Admin</Link>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                <Link to={'/admin/manage-doctor'}>Bác sĩ</Link>
-              </Breadcrumb.Item>
-            </Breadcrumb>
-          </Col>
-        </Row>
         <Row>
           {doctor.map((item) => (
             <Col sm="4">
@@ -93,12 +91,14 @@ function ManageDoctor(props) {
             </Col>
           ))}
         </Row>
-        <Row>
-          <PaginationCustom
-            pagination={pagination}
-            onPageChange={handerPageChange}
-          />
-        </Row>
+        {pagination._totalRow ? (
+          <Row>
+            <PaginationCustom
+              pagination={pagination}
+              onPageChange={handerPageChange}
+            />
+          </Row>
+        ) : null}
       </Container>
     </div>
   )

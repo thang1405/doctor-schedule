@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
-import { Breadcrumb } from 'antd'
+import { Breadcrumb, Empty } from 'antd'
 import { Link } from 'react-router-dom'
 
 import TopMenu from '../../components/TopMenu'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
 import '../../css/Doctor.css'
-import {notificationErrorNetwork} from '../../util/notification';
+import { notificationErrorNetwork } from '../../util/notification'
 
 import { getParams, getAll } from '../../service/DoctorServices'
 
@@ -38,8 +38,6 @@ function Doctor() {
       })
   }, [filters])
 
-  
-
   useEffect(() => {
     getAll()
       .then((res) => {
@@ -59,25 +57,30 @@ function Doctor() {
       _page: newPage,
     })
   }
-
+  if (!pagination._totalRow) {
+    return (
+      <div>
+        <TopMenu />
+        <Empty className='emplty'/>
+      </div>
+    )
+  }
   return (
     <div>
       <TopMenu />
       <Container className="main">
-        {pagination._totalRow ? (
-          <Row>
-            <Col className="bread-crumb">
-              <Breadcrumb>
-                <Breadcrumb.Item>
-                  <Link to={'/'}>Home</Link>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item>
-                  <Link to={'/doctor'}>Bác sĩ</Link>
-                </Breadcrumb.Item>
-              </Breadcrumb>
-            </Col>
-          </Row>
-        ) : null}
+        <Row>
+          <Col className="bread-crumb">
+            <Breadcrumb>
+              <Breadcrumb.Item>
+                <Link to={'/'}>Home</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to={'/doctor'}>Bác sĩ</Link>
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </Col>
+        </Row>
         <Row>
           {doctors.map((item) => (
             <Col sm="4">

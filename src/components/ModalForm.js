@@ -1,25 +1,15 @@
-import { Modal, Form, Select, Input, DatePicker } from 'antd'
+import { Modal, Form, Select, Input } from 'antd'
 import React from 'react'
 
 import '../css/ModalForm.css'
+import DisableTime from './DisableTime';
 
 export default function ModalForm(props) {
   const { visible, onCreate, onCancel, info } = props
   const { workTime, first_name, last_name } = info
-  let optionToRender
-
-  if (workTime) {
-    optionToRender = workTime.map((item,index) => {
-      return (
-        <Select.Option value={index} key={index}>
-          {item[0]} - {item[1]}
-        </Select.Option>
-      )
-    })
-  }
-
+  
   const [form] = Form.useForm()
-
+  
   return (
     <div className="button-schedule">
       <Modal
@@ -109,22 +99,9 @@ export default function ModalForm(props) {
               <Select.Option value="Orther">Khác</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item
-            label="Chọn ngày"
-            name="date"
-            hasFeedback
-            rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
-          >
-            <DatePicker />
-          </Form.Item>
-          <Form.Item
-            label="Thời gian làm việc"
-            name="time_work"
-            hasFeedback
-            rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
-          >
-            <Select placeholder="Time">{optionToRender}</Select>
-          </Form.Item>
+          
+          <DisableTime workTime={workTime} doctorId={info.id}/>
+
           <Form.Item label="Lý do" name="reason">
             <Input.TextArea rows={4} />
           </Form.Item>

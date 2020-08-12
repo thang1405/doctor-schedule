@@ -39,67 +39,68 @@ function DoctorDetail({ match }) {
       address: values.address,
       reason: values.reason,
     }
+    setVisible(false)
     postSchedule(data)
       .then((res) => {
         console.log(res)
         message.success('Đăng ký lịch khám thành công')
+        window.location.reload()
       })
       .catch((e) => {
         console.log(e)
         message.error('Đăng ký lịch khám thất bại')
       })
-
-    setVisible(false)
   }
 
   return (
-    <div><TopMenu/>
-    <Container>
-      <Row>
-        <Col className="bread-crumb">
-          <Breadcrumb style={{ margin: '10px 0' }}>
-            <Breadcrumb.Item>
-              <Link to={'/'}>Home</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <Link to={'/doctor'}>Bác sĩ</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              {doctor.first_name} {doctor.last_name}
-            </Breadcrumb.Item>
-          </Breadcrumb>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={16}>
-          <Avatar shape="square" size={250} src={doctor.imageUrl} />
-          <h2>
-            Bác sĩ : {doctor.first_name} {doctor.last_name}
-          </h2>
-          <p>Thông tin : {doctor.description}</p>
-          <p>Địa chỉ : {doctor.address}</p>
-        </Col>
-        <Col span={5}>
-          <Button
-            type="primary"
-            size="large"
-            onClick={() => {
-              setVisible(true)
-            }}
-          >
-            Đặt lịch khám
-          </Button>
-          <ModalForm
-            info={doctor}
-            visible={visible}
-            onCreate={onCreateSchedule}
-            onCancel={() => {
-              setVisible(false)
-            }}
-          />
-        </Col>
-      </Row>
-    </Container>
+    <div>
+      <TopMenu />
+      <Container>
+        <Row>
+          <Col className="bread-crumb">
+            <Breadcrumb style={{ margin: '10px 0' }}>
+              <Breadcrumb.Item>
+                <Link to={'/'}>Home</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to={'/doctor'}>Bác sĩ</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                {doctor.first_name} {doctor.last_name}
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={16}>
+            <Avatar shape="square" size={250} src={doctor.imageUrl} />
+            <h2>
+              Bác sĩ : {doctor.first_name} {doctor.last_name}
+            </h2>
+            <p>Thông tin : {doctor.description}</p>
+            <p>Địa chỉ : {doctor.address}</p>
+          </Col>
+          <Col span={5}>
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => {
+                setVisible(true)
+              }}
+            >
+              Đặt lịch khám
+            </Button>
+            <ModalForm
+              info={doctor}
+              visible={visible}
+              onCreate={onCreateSchedule}
+              onCancel={() => {
+                setVisible(false)
+              }}
+            />
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
