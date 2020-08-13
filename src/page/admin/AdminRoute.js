@@ -10,7 +10,7 @@ import ManageDoctor from './ManageDoctor'
 import ManageSchedule from './ManageSchedule'
 import ManageDoctorDetail from './ManageDoctorDetail';
 
-function adminRoute(props) {
+function AdminRoute(props) {
   
   return (
     <Container>
@@ -26,4 +26,4 @@ function adminRoute(props) {
   )
 }
 
-export default adminRoute
+export default AdminRoute

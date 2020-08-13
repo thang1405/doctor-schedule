@@ -58,7 +58,7 @@ function DoctorDetail({ match }) {
       <Container>
         <Row>
           <Col className="bread-crumb">
-            <Breadcrumb style={{ margin: '10px 0' }}>
+            <Breadcrumb >
               <Breadcrumb.Item>
                 <Link to={'/'}>Home</Link>
               </Breadcrumb.Item>

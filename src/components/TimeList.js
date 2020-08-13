@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button, TimePicker, Space } from 'antd'
 import moment from 'moment'
 
@@ -8,29 +8,45 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons'
 const { RangePicker } = TimePicker
 
 function TimeList({ workTime }) {
-  const [isRenderTime, setRenderTime] = useState(false)
+  const [shifts, setShifts] = useState({
+    data: [],
+    isRender: false,
+  })
+
+  useEffect(() => {
+    if (workTime.length > 0) {
+      setShifts({ data: workTime.map((i, index) => index) })
+    } else {
+      setShifts({ data: [0] })
+    }
+  }, [workTime])
+
+  const renderShift = (fields, add) => {
+    if (shifts.data && fields.length < shifts.data.length && !shifts.isRender) {
+      //repair infomation doctor
+      shifts.data.forEach((i) => {
+        add()
+        setShifts({ ...shifts, isRender: true })
+      })
+    }
+  }
   return (
     <Form.List name="workTime">
-      {(fields, { add, remove }) => { 
+      {(fields, { add, remove }) => {
         //add row time ranger
-        if (workTime && fields.length < workTime.length && !isRenderTime) {
-          workTime.forEach(() => {
-            add()
-            setRenderTime(true)
-          })
-        }
+        renderShift(fields, add)
         return (
           <Form.Item label="Thời gian làm">
             {fields.map((field) => (
               <Space
                 key={field.key}
-                className='time-ranger-space'
+                className="time-ranger-space"
                 align="start"
               >
                 <Form.Item
                   {...field}
                   initialValue={
-                    workTime[field.key]
+                    workTime[field.key] && workTime
                       ? [
                           moment(workTime[field.key][0], 'HH:mm'),
                           moment(workTime[field.key][1], 'HH:mm'),
@@ -41,11 +57,13 @@ function TimeList({ workTime }) {
                 >
                   <RangePicker format="HH:mm" />
                 </Form.Item>
-                <MinusCircleOutlined
-                  onClick={() => {
-                    remove(field.name)
-                  }}
-                />
+                {fields.length > 1 ? (
+                  <MinusCircleOutlined
+                    onClick={() => {
+                      remove(field.name)
+                    }}
+                  />
+                ) : null}
               </Space>
             ))}
             <Form.Item>

@@ -2,19 +2,20 @@ import { Modal, Form, Select, Input } from 'antd'
 import React from 'react'
 
 import '../css/ModalForm.css'
-import DisableTime from './DisableTime';
+import DisableTime from './DisableTime'
+import { name, phoneNumber } from '../util/Validator'
 
 export default function ModalForm(props) {
   const { visible, onCreate, onCancel, info } = props
   const { workTime, first_name, last_name } = info
-  
+
   const [form] = Form.useForm()
-  
+
   return (
     <div className="button-schedule">
       <Modal
         title={`${first_name} ${last_name}`}
-        style={{ top: 0 }}
+        style={{ top: 10 }}
         width={650}
         visible={visible}
         okText="Xác nhận"
@@ -45,7 +46,7 @@ export default function ModalForm(props) {
             hasFeedback
             rules={[
               {
-                pattern:/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/,
+                pattern: name,
                 required: true,
                 message: 'Vui lòng nhập lại!',
               },
@@ -71,9 +72,12 @@ export default function ModalForm(props) {
             hasFeedback
             rules={[
               {
-                required:true,
-                pattern:/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-                message: 'Vui lòng nhập đầy đủ là số',
+                required: true,
+                message: 'Vui lòng nhập đầy đủ',
+              },
+              {
+                pattern: phoneNumber,
+                message: 'Vui lòng chỉ nhập 10 số',
               }
             ]}
           >
@@ -99,8 +103,8 @@ export default function ModalForm(props) {
               <Select.Option value="Orther">Khác</Select.Option>
             </Select>
           </Form.Item>
-          
-          <DisableTime workTime={workTime} doctorId={info.id}/>
+
+          <DisableTime workTime={workTime} doctorId={info.id} />
 
           <Form.Item label="Lý do" name="reason">
             <Input.TextArea rows={4} />

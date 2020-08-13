@@ -83,7 +83,7 @@ function Doctor() {
         </Row>
         <Row>
           {doctors.map((item) => (
-            <Col sm="4">
+            <Col sm="4"  key={item.id}>
               <Link to={`/doctor/${item.id}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>

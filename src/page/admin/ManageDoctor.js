@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
-import { Redirect ,Link} from 'react-router-dom'
-import { Empty } from 'antd'
+import { Redirect, Link, useHistory } from 'react-router-dom'
+import { Empty, Button, message } from 'antd'
 
 import LeftMenu from '../../components/LeftMenu'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
+import ModalFormAdmin from '../../components/ModalFormAdmin'
 import { notificationErrorNetwork } from '../../util/notification'
 import '../../css/Doctor.css'
 
-import { getParams, getAll } from '../../service/DoctorServices'
+import { getParams, getAll, postDoctor } from '../../service/DoctorServices'
 
 function ManageDoctor(props) {
   const [doctor, setDoctor] = useState([])
+  const [visible, setVisible] = useState(false)
   const [pagination, setPagination] = useState({
     _page: 1,
     _limit: 9,
@@ -22,6 +24,8 @@ function ManageDoctor(props) {
     _page: 1,
     _limit: 9,
   })
+
+  const history = useHistory()
 
   useEffect(() => {
     getParams(filter)
@@ -78,13 +82,52 @@ function ManageDoctor(props) {
     )
   }
 
+  const onAddDoctor = (values) => {
+    const time = values.workTime.map((item) => {
+      return [item[0].format('HH:mm'), item[1].format('HH:mm')]
+    })
+    const data = {
+      ...values,
+      workTime: time,
+      imageUrl: 'http://dummyimage.com/400x300.jpg/ff4444/ffffff',
+    }
+    // console.log(data)
+    postDoctor(data)
+      .then((res) => {
+        message.success('Thêm bác sĩ thành công')
+        setVisible(false)
+        history.push(`/admin/manage-doctor/${res.data.id}`)
+      })
+      .catch((e) => {
+        message.error('Thêm bác sĩ thất bại')
+        console.log(e)
+      })
+  }
+
   return (
-    <div className='main'>
+    <div className="main">
       <LeftMenu />
       <Container>
         <Row>
+          <Button
+            onClick={() => {
+              setVisible(true)
+            }}
+          >
+            Thêm
+          </Button>
+          <ModalFormAdmin
+            label="Thêm bác sĩ"
+            visible={visible}
+            onSubmit={onAddDoctor}
+            onCancel={() => {
+              setVisible(false)
+            }}
+          />
+        </Row>
+        <Row>
           {doctor.map((item) => (
-            <Col sm="4">
+            <Col sm="4" key={item.id}>
               <Link to={`/admin/manage-doctor/${item.id}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>

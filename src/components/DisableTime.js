@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Select, DatePicker } from 'antd'
+import { Form, Select, DatePicker, Row, Col,Space } from 'antd'
 import moment from 'moment'
+import '../css/ModalForm.css'
 
 import { getScheduleDoctor } from '../service/ScheduleServices'
 
-function DisableTime({ workTime, doctorId, form }) {
+function DisableTime({ workTime, doctorId }) {
   const [scheduled, setScheduled] = useState({})
-  const [disabledShifts, setDisabledShifts] = useState([])
+  const [disabledShifts, setDisabledShifts] = useState({
+    isDayEmpty: true,
+    list: [],
+  })
 
   useEffect(() => {
     getScheduleDoctor(doctorId)
@@ -22,6 +26,8 @@ function DisableTime({ workTime, doctorId, form }) {
       })
   }, [doctorId])
 
+  //date
+
   const checkDisableDate = (currentDay) => {
     const convertDay = moment(currentDay).format('YYYY-MM-DD')
     const listOfDate = scheduled
@@ -35,7 +41,8 @@ function DisableTime({ workTime, doctorId, form }) {
   const disabledDate = (current) => {
     return checkDisableDate(current) ? true : current < moment().startOf('day')
   }
-  console.log(scheduled)
+
+  //shift
 
   const disabledListShifts = (currentDay) => {
     const convertDay = moment(currentDay).format('YYYY-MM-DD')
@@ -44,22 +51,31 @@ function DisableTime({ workTime, doctorId, form }) {
           return i.date === convertDay
         })
       : []
-    return listOfShift
+    return listOfShift.map((i) => {
+      return i.time_work
+    })
+  }
+
+  const isDisabledShifts = (currentIndex) => {
+    return disabledShifts.list.indexOf(currentIndex) === -1 &&
+      !disabledShifts.isDayEmpty
+      ? false
+      : true
   }
 
   const onChangeDate = (current) => {
-    console.log(disabledListShifts(current));
-    setDisabledShifts(disabledListShifts(current));
+    setDisabledShifts({ isDayEmpty: false, list: disabledListShifts(current) })
   }
-
-  console.log(disabledShifts);
 
   let optionToRender
   if (workTime) {
     optionToRender = workTime.map((item, index) => {
-      console.log(index);
       return (
-        <Select.Option value={index} disabled={!disabledShifts[index]} key={index}>
+        <Select.Option
+          value={index}
+          disabled={isDisabledShifts(index)}
+          key={index}
+        >
           {item[0]} - {item[1]}
         </Select.Option>
       )
@@ -67,28 +83,34 @@ function DisableTime({ workTime, doctorId, form }) {
   }
 
   return (
-    <div>
-      <Form.Item
-        label="Chọn ngày"
-        name="date"
-        hasFeedback
-        rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
-      >
-        <DatePicker
-          onChange={onChangeDate}
-          format="YYYY-MM-DD"
-          disabledDate={disabledDate}
-        />
-      </Form.Item>
-      <Form.Item
-        label="Thời gian làm việc"
-        name="time_work"
-        hasFeedback
-        rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
-      >
-        <Select placeholder="Time">{optionToRender}</Select>
-      </Form.Item>
-    </div>
+    <Form.Item label="Chọn ngày">
+      <Row>
+        <Space className="time-ranger-space" align="start">
+          <Col>
+            <Form.Item
+              name="date"
+              hasFeedback
+              rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
+            >
+              <DatePicker
+                onChange={onChangeDate}
+                format="YYYY-MM-DD"
+                disabledDate={disabledDate}
+              />
+            </Form.Item>
+          </Col>
+          <Col>
+            <Form.Item
+              name="time_work"
+              hasFeedback
+              rules={[{ required: true, message: 'Vui lòng chọn lại!' }]}
+            >
+              <Select placeholder="Chọn ca khám bệnh">{optionToRender}</Select>
+            </Form.Item>
+          </Col>
+        </Space>
+      </Row>
+    </Form.Item>
   )
 }
 

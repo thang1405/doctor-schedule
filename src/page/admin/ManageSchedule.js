@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 import { Redirect } from 'react-router-dom'
-import { Button, Table, Popconfirm ,message} from 'antd'
+import { Button, Table, Popconfirm, message } from 'antd'
 import { notificationErrorNetwork } from '../../util/notification'
 import LeftMenu from '../../components/LeftMenu'
-
 import { getAll, deleteSchedule } from '../../service/ScheduleServices'
 
 function ManageSchedule(props) {
@@ -41,13 +40,15 @@ function ManageSchedule(props) {
   }
 
   const onDelete = (id) => {
-    deleteSchedule(id).then(()=>{
-      message.success('Xóa thành công')
-      setRender(!isRender)
-    }).catch(e=>{
-      console.log(e)
-      message.error('Xóa thất bại')
-    })
+    deleteSchedule(id)
+      .then(() => {
+        message.success('Xóa thành công')
+        setRender(!isRender)
+      })
+      .catch((e) => {
+        console.log(e)
+        message.error('Xóa thất bại')
+      })
   }
 
   const columns = [
@@ -67,6 +68,7 @@ function ManageSchedule(props) {
       title: 'Họ tên bệnh nhân',
       dataIndex: 'name',
       key: 'name',
+      sorter: (a, b) => a.name.charCodeAt(0) - b.name.charCodeAt(0),
     },
     {
       title: 'Giới tính',
@@ -93,18 +95,18 @@ function ManageSchedule(props) {
       title: 'Action',
       dataIndex: '',
       key: 'x',
-      render: (record) => 
-        schedules.length >=1?(
-        <Popconfirm
-          placement="topRight"
-          title='Sure to delete?'
-          onConfirm={()=>onDelete(record.key)}
-          okText="Yes"
-          cancelText="No"
-        >
-          <Button>Xóa</Button>
-        </Popconfirm>
-      ):null
+      render: (record) =>
+        schedules.length >= 1 ? (
+          <Popconfirm
+            placement="topRight"
+            title="Sure to delete?"
+            onConfirm={() => onDelete(record.key)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button>Xóa</Button>
+          </Popconfirm>
+        ) : null,
     },
   ]
 
@@ -128,8 +130,6 @@ function ManageSchedule(props) {
       </div>
     </div>
   )
-
-  
 }
 
 export default ManageSchedule

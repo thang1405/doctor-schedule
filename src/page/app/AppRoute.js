@@ -5,6 +5,7 @@ import {Switch,Route} from 'react-router-dom';
 import Doctor from './Doctor'
 import DoctorDetail from './DoctorDetail'
 import Home from './Home'
+// import TopMenu from '../../components/TopMenu';
 
 function appRoute(props) {
   return (

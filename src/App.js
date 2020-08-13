@@ -9,13 +9,13 @@ import './css/page.css'
 function App() {
   return (
     <div className="page-container">
-      <div className='content-wrap  '>
-      <Router>
-        <AppRoute />
-        <AdminRoute />
-      </Router>
+      <div className="content-wrap">
+        <Router>
+          <AppRoute />
+          <AdminRoute />
+        </Router>
       </div>
-      <Footer className='footer'/>
+      <Footer className="footer" />
     </div>
   )
 }

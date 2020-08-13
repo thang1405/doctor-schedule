@@ -16,7 +16,7 @@ const TopMenu = (props) => {
 
   return (
     <div>
-      <Navbar color="dark" dark expand="md">
+      <Navbar color="light" light expand="md">
         <NavbarBrand href="/">NEEL</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
