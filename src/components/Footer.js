@@ -12,6 +12,6 @@ const { Footer } = Layout;
 
 export default function () {
   return (
-    <Footer style={{ textAlign: 'center' }}>Mock Project ©2020 Created by Neel.</Footer>
+    <Footer className='footer'>Mock Project ©2020 Created by Neel.</Footer>
   )
 }

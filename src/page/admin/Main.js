@@ -1,8 +1,10 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect,Link} from 'react-router-dom'
 import { Container } from 'reactstrap'
+import { Result, Button } from 'antd';
+import { Html5Outlined } from '@ant-design/icons';
 
-import LeftMenu from '../../components/LeftMenu'
+import AdminLayout from './AdminLayout'
 function Main(props) {
   const token = localStorage.getItem('token')
 
@@ -15,12 +17,15 @@ function Main(props) {
     return <Redirect to="/admin" />
   }
   return (
-    <div>
-      <LeftMenu />
+    <AdminLayout>
       <Container>
-        <h2>Chào admin , đây là giao diện admin tạm thời</h2>
+        <Result
+          icon={<Html5Outlined />}
+          title="Xin chào , Đây là trang admin!"
+          extra={<Link to='/admin/manage-doctor'><Button type="primary">Quản lý bác sĩ</Button></Link>}
+        />
       </Container>
-    </div>
+    </AdminLayout>
   )
 }
 

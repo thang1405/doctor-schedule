@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
+import AdminLayout from './AdminLayout'
 import { Redirect } from 'react-router-dom'
 import { Button, Table, Popconfirm, message } from 'antd'
+import { Container } from 'react-bootstrap'
+import moment from 'moment';
+
 import { notificationErrorNetwork } from '../../util/notification'
-import LeftMenu from '../../components/LeftMenu'
 import { getAll, deleteSchedule } from '../../service/ScheduleServices'
 
 function ManageSchedule(props) {
@@ -90,6 +93,7 @@ function ManageSchedule(props) {
       title: 'Ngày khám',
       dataIndex: 'date',
       key: 'date',
+      sorter: (a, b) => moment(a.date).utcOffset(a.date) - moment(b.date).utcOffset(b.date),
     },
     {
       title: 'Action',
@@ -111,9 +115,8 @@ function ManageSchedule(props) {
   ]
 
   return (
-    <div>
-      <LeftMenu />
-      <div style={{ marginBottom: 16 }}>
+    <AdminLayout>
+      <Container>
         <Table
           columns={columns}
           expandable={{
@@ -127,8 +130,8 @@ function ManageSchedule(props) {
           }}
           dataSource={schedules}
         />
-      </div>
-    </div>
+      </Container>
+    </AdminLayout>
   )
 }
 

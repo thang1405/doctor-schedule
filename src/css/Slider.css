@@ -1,11 +1,8 @@
 .custom-tag {
   max-width: 100%;
-  height: 450px;
+  height:500px;
   background: #8bc34a;
 }
-.containerDiv{
-  margin-bottom: 20px;
-}
-.next, .prev{
+.btn-more{  
   width: 5%;
 }

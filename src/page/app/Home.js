@@ -1,20 +1,18 @@
 import React from 'react'
-import {Container } from 'reactstrap'
+import { Container } from 'reactstrap'
 
 import Slider from '../../components/Slider'
 import HorizontalScrolling from '../../components/HorizontalScrolling'
-
-import TopMenu from '../../components/TopMenu'
+import HomeLayout from '../../page/app/HomeLayout'
 
 function Home() {
   return (
-    <div>
-    <TopMenu />
+    <HomeLayout>
       <Slider />
       <Container>
         <HorizontalScrolling />
       </Container>
-    </div>
+    </HomeLayout>
   )
 }
 

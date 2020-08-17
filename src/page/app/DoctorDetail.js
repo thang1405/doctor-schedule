@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { Breadcrumb, Avatar, Row, Col, Button, message } from 'antd'
+import { Breadcrumb, Avatar, Row, Col, Button, message, Spin , Empty } from 'antd'
 import moment from 'moment'
 
 import ModalForm from '../../components/ModalForm'
-import TopMenu from '../../components/TopMenu'
+import HomeLayout from '../../page/app/HomeLayout'
 import '../../css/Doctor.css'
 
 import { getId } from '../../service/DoctorServices'
@@ -14,12 +14,14 @@ import { postSchedule } from '../../service/ScheduleServices'
 function DoctorDetail({ match }) {
   const [doctor, setDoctor] = useState({})
   const [visible, setVisible] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getId(match.params.id)
       .then((res) => {
         const { data } = res
         setDoctor(data)
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error)
@@ -51,14 +53,22 @@ function DoctorDetail({ match }) {
         message.error('Đăng ký lịch khám thất bại')
       })
   }
+  if (loading) {
+    return (
+      <HomeLayout className="spin-loading">
+        <Spin>
+          <Empty className='empty'/>
+        </Spin>
+      </HomeLayout>
+    )
+  }
 
   return (
-    <div>
-      <TopMenu />
+    <HomeLayout>
       <Container>
         <Row>
           <Col className="bread-crumb">
-            <Breadcrumb >
+            <Breadcrumb>
               <Breadcrumb.Item>
                 <Link to={'/'}>Home</Link>
               </Breadcrumb.Item>
@@ -101,7 +111,7 @@ function DoctorDetail({ match }) {
           </Col>
         </Row>
       </Container>
-    </div>
+    </HomeLayout>
   )
 }
 

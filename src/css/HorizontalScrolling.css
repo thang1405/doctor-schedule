@@ -1,25 +1,32 @@
-.menu-item {
-  padding: 75px 142px;
-  margin: 10px;
-  user-select: none;
-  cursor: pointer;
-  border: none;
-  background-color: #ff8f00;
-  color: white;
-  border-radius: 5px;
-}
-.menu-item:focus {
-  outline:none !important;
+.introduce-col{
+  padding: 20px 20px;
+  color:white;
+  background-color: rgba(18, 197, 195, 1)
 }
 
-.scroll-menu-arrow {
-  padding: 5px;
-  cursor: pointer;
+.introduce-col:last-child{
+  background-color: rgba(2, 157, 155, 1);
 }
-*:focus {
-  outline:none !important
+
+.introduce{
+  position: relative;
+  top: -35px;
+  z-index: 10000;
 }
-.arrow{
-  font-size: 32px ;
-  color: #1976d2;
+
+.decription{
+  font-size: 15px;
+  padding:0px 20px;
+}
+.title{
+  display: block;
+  text-align: center;
+  font-size: 25px;
+  align-items: center;
+  line-height: 1.55;
+  font-family: 'Source Serif Pro'
+}
+
+.button-introduce{
+  
 }

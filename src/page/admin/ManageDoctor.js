@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
 import { Redirect, Link, useHistory } from 'react-router-dom'
-import { Empty, Button, message } from 'antd'
+import { Empty, Button, message, Spin } from 'antd'
 
-import LeftMenu from '../../components/LeftMenu'
+import AdminLayout from './AdminLayout'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
 import ModalFormAdmin from '../../components/ModalFormAdmin'
@@ -35,6 +35,7 @@ function ManageDoctor(props) {
         setPagination((prev) => {
           return { ...prev, _page: filter._page }
         })
+        window.scrollTo(0, 0)
       })
       .catch((e) => {
         console.log(e)
@@ -75,10 +76,11 @@ function ManageDoctor(props) {
 
   if (!pagination._totalRow) {
     return (
-      <div>
-        <LeftMenu />
-        <Empty className="emplty" />
-      </div>
+      <AdminLayout>
+        <Spin>
+          <Empty className="emplty" />
+        </Spin>
+      </AdminLayout>
     )
   }
 
@@ -105,8 +107,7 @@ function ManageDoctor(props) {
   }
 
   return (
-    <div className="main">
-      <LeftMenu />
+    <AdminLayout>
       <Container>
         <Row>
           <Button
@@ -143,7 +144,7 @@ function ManageDoctor(props) {
           </Row>
         ) : null}
       </Container>
-    </div>
+    </AdminLayout>
   )
 }
 

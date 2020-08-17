@@ -5,7 +5,8 @@ import { Breadcrumb, Avatar, Row, Col, Button, message, Popconfirm } from 'antd'
 import { useHistory } from 'react-router-dom'
 
 import '../../css/Doctor.css'
-import LeftMenu from '../../components/LeftMenu'
+import UploadAvatar from '../../components/UploadAvatar';
+import AdminLayout from './AdminLayout';
 import ModalFormAdmin from '../../components/ModalFormAdmin'
 import {
   getId,
@@ -60,61 +61,63 @@ function ManageDoctorDetail({ match }) {
   }
 
   return (
-    <Container>
-      <LeftMenu />
-      <Row>
-        <Col className="bread-crumb">
-          <Breadcrumb style={{ margin: '10px 0' }}>
-            <Breadcrumb.Item>
-              <Link to={'/admin'}>Admin</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <Link to={'/admin/manage-doctor'}>Bác sĩ</Link>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              {doctor.first_name} {doctor.last_name}
-            </Breadcrumb.Item>
-          </Breadcrumb>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={16}>
-          <Avatar shape="square" size={250} src={doctor.imageUrl} />
-          <h2>
-            Bác sĩ : {doctor.first_name} {doctor.last_name}
-          </h2>
-          <p>Thông tin : {doctor.description}</p>
-          <p>Địa chỉ : {doctor.address}</p>
-        </Col>
-        <Col span={8}>
-          <Popconfirm
-            placement="top"
-            title="Sure to delete?"
-            onConfirm={onDelete}
-            okText="Yes"
-            cancelText="No"
-          >
-            <Button>Xóa</Button>
-          </Popconfirm>
-          <Button
-            onClick={() => {
-              setVisible(true)
-            }}
-          >
-            Sửa
-          </Button>
-          <ModalFormAdmin
-            label={`${doctor.first_name} ${doctor.last_name}`}
-            info={doctor}
-            visible={visible}
-            onSubmit={onRepair}
-            onCancel={() => {
-              setVisible(false)
-            }}
-          />
-        </Col>
-      </Row>
-    </Container>
+    <AdminLayout>
+      <Container>
+        <Row>
+          <Col className="bread-crumb">
+            <Breadcrumb style={{ margin: '10px 0' }}>
+              <Breadcrumb.Item>
+                <Link to={'/admin'}>Admin</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to={'/admin/manage-doctor'}>Bác sĩ</Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                {doctor.first_name} {doctor.last_name}
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={16}>
+            <Avatar shape="square" size={250} src={doctor.imageUrl} />
+            <UploadAvatar/>
+            <h2>
+              Bác sĩ : {doctor.first_name} {doctor.last_name}
+            </h2>
+            <p>Thông tin : {doctor.description}</p>
+            <p>Địa chỉ : {doctor.address}</p>
+          </Col>
+          <Col span={8}>
+            <Popconfirm
+              placement="top"
+              title="Sure to delete?"
+              onConfirm={onDelete}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button>Xóa</Button>
+            </Popconfirm>
+            <Button
+              onClick={() => {
+                setVisible(true)
+              }}
+            >
+              Sửa
+            </Button>
+            <ModalFormAdmin
+              label={`${doctor.first_name} ${doctor.last_name}`}
+              info={doctor}
+              visible={visible}
+              onSubmit={onRepair}
+              onCancel={() => {
+                setVisible(false)
+              }}
+            />
+          </Col>
+        </Row>
+      </Container>
+    </AdminLayout>
   )
 }
 

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
-import { Breadcrumb, Empty, Spin } from 'antd'
-import { Link } from 'react-router-dom'
+import { Breadcrumb, Empty } from 'antd'
+import { Link,useParams } from 'react-router-dom'
 
-import HomeLayout from '../../page/app/HomeLayout'
+import HomeLayout from '../../components/TopMenu'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
 import '../../css/Doctor.css'
 import { notificationErrorNetwork } from '../../util/notification'
 
-import { getParams, getAll } from '../../service/DoctorServices'
+import { getParams } from '../../service/DoctorServices'
 
-function Doctor() {
+function Speacialist(props) {
+  const params = useParams()
+
   const [doctors, setDoctors] = useState([])
   const [pagination, setPagination] = useState({
     _page: 1,
@@ -19,6 +21,7 @@ function Doctor() {
     _totalRow: 0,
   })
   const [filters, setFilter] = useState({
+    specialist_id:params.id,
     _page: 1,
     _limit: 9,
   })
@@ -37,10 +40,10 @@ function Doctor() {
         console.log(e)
         notificationErrorNetwork()
       })
-  }, [filters])
+  }, [filters,params])
 
   useEffect(() => {
-    getAll()
+    getParams({specialist_id:params.id})
       .then((res) => {
         const { data } = res
         setPagination((prev) => {
@@ -50,20 +53,18 @@ function Doctor() {
       .catch((e) => {
         console.log(e)
       })
-  }, [])
-
+  }, [params])
+  console.log(params,filters)
   const handerPageChange = (newPage) => {
     setFilter({
       ...filters,
       _page: newPage,
     })
   }
-  if (!pagination._totalRow) {
+  if (!pagination._totalRow ) {
     return (
       <HomeLayout>
-        <Spin>
-          <Empty className="empty" />
-        </Spin>
+        <Empty className="empty" />
       </HomeLayout>
     )
   }
@@ -91,7 +92,7 @@ function Doctor() {
             </Col>
           ))}
         </Row>
-        {pagination._totalRow ? (
+        {pagination._totalRow > filters._limit ? (
           <Row>
             <PaginationCustom
               pagination={pagination}
@@ -104,4 +105,4 @@ function Doctor() {
   )
 }
 
-export default Doctor
+export default Speacialist

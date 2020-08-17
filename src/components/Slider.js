@@ -80,13 +80,13 @@ const Slider = (props) => {
         />
         {slides}
         <CarouselControl
-          className="prev"
+          className="prev btn-more"
           direction="prev"
           directionText="Previous"
           onClickHandler={previous}
         />
         <CarouselControl
-          className="next"
+          className="next btn-more"
           direction="next"
           directionText="Next"
           onClickHandler={next}
