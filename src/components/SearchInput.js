@@ -17,7 +17,7 @@ export default function SearchInput(props) {
     getAll().then((res) => {
       const { data } = res
       const listOptions = data.map((i) => ({
-        value: i.first_name + ' ' + i.last_name,
+        value: i.name,
         key: i.id,
       }))
       setOptionList(listOptions)

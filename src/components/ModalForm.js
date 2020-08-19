@@ -3,18 +3,18 @@ import React from 'react'
 
 import '../css/ModalForm.css'
 import DisableTime from './DisableTime'
-import { name, phoneNumber } from '../util/Validator'
+import { vietnamese , phoneNumber } from '../util/Validator'
 
 export default function ModalForm(props) {
   const { visible, onCreate, onCancel, info } = props
-  const { workTime, first_name, last_name } = info
+  const { workTime, name } = info
 
   const [form] = Form.useForm()
 
   return (
     <div className="button-schedule">
       <Modal
-        title={`${first_name} ${last_name}`}
+        title={name}
         style={{ top: 10 }}
         width={650}
         visible={visible}
@@ -46,7 +46,7 @@ export default function ModalForm(props) {
             hasFeedback
             rules={[
               {
-                pattern: name,
+                pattern: vietnamese,
                 required: true,
                 message: 'Vui lòng nhập lại!',
               },

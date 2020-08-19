@@ -15,12 +15,12 @@ function Doctor() {
   const [doctors, setDoctors] = useState([])
   const [pagination, setPagination] = useState({
     _page: 1,
-    _limit: 9,
+    _limit: 12,
     _totalRow: 0,
   })
   const [filters, setFilter] = useState({
     _page: 1,
-    _limit: 9,
+    _limit: 12,
   })
 
   useEffect(() => {
@@ -84,7 +84,7 @@ function Doctor() {
         </Row>
         <Row>
           {doctors.map((item) => (
-            <Col sm="4" key={item.id}>
+            <Col className='col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4' key={item.id}>
               <Link to={`/doctor/${item.id}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>

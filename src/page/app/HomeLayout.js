@@ -7,7 +7,7 @@ function HomeLayout(props) {
   return (
     <div className="page-container">
       <div className="content-wrap">
-        <TopMenu className="top-menu" />
+        <TopMenu className="top-menu"/>
         <div className="main">{props.children}</div>
         <Footer className="footer" />
       </div>

@@ -1,24 +1,35 @@
 export const specialist = [
   {
     key: 1,
-    specialist: 'Răng hàm mặt',
+    imageUrl:'http://medicare.bold-themes.com/clinic/wp-content/uploads/sites/2/2015/12/devojcica-kod-zubara-320x320.jpg',
+    value: 'Răng hàm mặt',
     short_decription: 'For your child whitest teeths',
     decription:
-      'Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.',
+      'Praesent convallis tortor et enim laoreet, vel consectetur purus latoque penatibus et dis parturient.',
   },
   {
     key: 2,
     value: 'Nhi',
+    imageUrl:'http://medicare.bold-themes.com/clinic/wp-content/uploads/sites/2/2015/12/devojcica-kod-zubara-320x320.jpg',
     short_decription: 'Children medical care',
     decription:
-      'Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.',
+    'Praesent convallis tortor et enim laoreet, vel consectetur purus latoque penatibus et dis parturient.',
   },
   {
     key: 3,
     value: 'Tim mạch',
+    imageUrl:'http://medicare.bold-themes.com/clinic/wp-content/uploads/sites/2/2015/12/srce-i-stetoskop-320x320.jpg',
     short_decription: 'For all your family needs',
     decription:
-      'Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.',
+      'Nullam eleifend lectus a tortor interdum, non sodales ante vehicula. Proin consequat, at commodo.',
+  },
+  {
+    key: 4,
+    value: 'Chân',
+    imageUrl:'http://medicare.bold-themes.com/clinic/wp-content/uploads/sites/2/2015/12/kiroprakticar-320x320.jpg',
+    short_decription: 'For all your family needs',
+    decription:
+    'Duis scelerisque faucibus nisi sed lacinia. Curabitur ipsum elit, cursus id dui quis, dictum laoreet neque.',
   },
 ]
 export const introduce = [

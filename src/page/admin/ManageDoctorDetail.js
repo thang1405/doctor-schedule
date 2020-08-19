@@ -5,7 +5,6 @@ import { Breadcrumb, Avatar, Row, Col, Button, message, Popconfirm } from 'antd'
 import { useHistory } from 'react-router-dom'
 
 import '../../css/Doctor.css'
-import UploadAvatar from '../../components/UploadAvatar';
 import AdminLayout from './AdminLayout';
 import ModalFormAdmin from '../../components/ModalFormAdmin'
 import {
@@ -73,7 +72,7 @@ function ManageDoctorDetail({ match }) {
                 <Link to={'/admin/manage-doctor'}>Bác sĩ</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                {doctor.first_name} {doctor.last_name}
+                {doctor.name}
               </Breadcrumb.Item>
             </Breadcrumb>
           </Col>
@@ -81,9 +80,8 @@ function ManageDoctorDetail({ match }) {
         <Row>
           <Col span={16}>
             <Avatar shape="square" size={250} src={doctor.imageUrl} />
-            <UploadAvatar/>
             <h2>
-              Bác sĩ : {doctor.first_name} {doctor.last_name}
+              Bác sĩ : {doctor.name}
             </h2>
             <p>Thông tin : {doctor.description}</p>
             <p>Địa chỉ : {doctor.address}</p>
@@ -106,7 +104,7 @@ function ManageDoctorDetail({ match }) {
               Sửa
             </Button>
             <ModalFormAdmin
-              label={`${doctor.first_name} ${doctor.last_name}`}
+              label={`${doctor.name}`}
               info={doctor}
               visible={visible}
               onSubmit={onRepair}

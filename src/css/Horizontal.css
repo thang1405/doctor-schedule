@@ -1,0 +1,52 @@
+.introduce-col {
+  padding: 20px 20px;
+  color: white;
+  background-image: radial-gradient(
+    circle,
+    rgba(12, 156, 175, 1) 50%,
+    #006ba1 200%
+  );
+}
+
+.introduce-col:last-child {
+  background-image: rgba(12, 150, 168, 1);
+}
+
+.introduce {
+  position: relative;
+  top: -35px;
+}
+
+.decription {
+  font-size: 13px;
+  padding: 0px 20px;
+}
+
+.title-div {
+  display: inline-block;
+  margin: 0px 15px 0px 15px;
+}
+
+.title-div::after {
+  content: '';
+  clear: both;
+  width: 60px;
+  display: table;
+  float: left;
+  height: 2px;
+  line-height: 2px;
+  overflow: hidden;
+  margin: 0 auto 7px;
+  box-shadow: 0 2px 0 0 #f95759 inset;
+}
+
+.title{
+  color: #fff;
+  font-family: Playfair Display;
+  font-weight: 400;
+}
+
+.avatar-img{
+  height: 240px;
+}
+

@@ -1,3 +1,8 @@
 .card-main{
   margin-bottom: 30px;
 } 
+.avatar-img{
+  width:400px;
+  height: 350px;
+  object-fit: cover
+}

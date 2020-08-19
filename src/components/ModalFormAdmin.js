@@ -3,7 +3,7 @@ import { Modal, Form, Input, InputNumber } from 'antd'
 
 import '../css/ModalForm.css'
 import TimeList from './TimeList'
-import { name } from '../util/Validator'
+import { vietnamese } from '../util/Validator'
 
 export default function ModalFormAdmin(props) {
   const { visible, onSubmit, onCancel, info, label } = props
@@ -39,31 +39,13 @@ export default function ModalFormAdmin(props) {
         onFinish={onSubmit}
       >
         <Form.Item
-          label="Họ"
-          name="first_name"
+          label="Họ Tên"
+          name="name"
           hasFeedback
-          initialValue={info ? info.first_name : null}
+          initialValue={info ? info.name : null}
           rules={[
             {
-              pattern: name,
-              message: 'Vui lòng nhập lại!',
-            },
-            {
-              required: true,
-              message: 'Vui lòng nhập lại!',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Tên"
-          name="last_name"
-          initialValue={info ? info.last_name : null}
-          hasFeedback
-          rules={[
-            {
-              pattern: name,
+              pattern: vietnamese,
               message: 'Vui lòng nhập lại!',
             },
             {

@@ -9,11 +9,11 @@ function DoctorCard(props) {
   return (
     <div className="card-main">
       <Card
-        cover={<img alt="example" src={info.imageUrl} />}
+        cover={<img alt="example" className='avatar-img' src={info.imageUrl} />}
         hoverable
       >
         <Meta
-          title={`Bác sĩ : ${info.first_name} ${info.last_name}`}
+          title={`Bác sĩ : ${info.name}`}
           description={`Địa chỉ : ${info.address}`}
         />
       </Card>

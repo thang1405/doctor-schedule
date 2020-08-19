@@ -2,7 +2,8 @@ import React from 'react'
 import { Container } from 'reactstrap'
 
 import Slider from '../../components/Slider'
-import HorizontalScrolling from '../../components/HorizontalScrolling'
+import HorizontalIntroduce from '../../components/HorizontalIntroduce'
+import HorizontalSpecialist from '../../components/HorizontalSpecialist'
 import HomeLayout from '../../page/app/HomeLayout'
 
 function Home() {
@@ -10,7 +11,8 @@ function Home() {
     <HomeLayout>
       <Slider />
       <Container>
-        <HorizontalScrolling />
+        <HorizontalIntroduce />
+        <HorizontalSpecialist/>
       </Container>
     </HomeLayout>
   )

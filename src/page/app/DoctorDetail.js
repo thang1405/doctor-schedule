@@ -76,7 +76,7 @@ function DoctorDetail({ match }) {
                 <Link to={'/doctor'}>Bác sĩ</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                {doctor.first_name} {doctor.last_name}
+                {doctor.name}
               </Breadcrumb.Item>
             </Breadcrumb>
           </Col>
@@ -85,7 +85,7 @@ function DoctorDetail({ match }) {
           <Col span={16}>
             <Avatar shape="square" size={250} src={doctor.imageUrl} />
             <h2>
-              Bác sĩ : {doctor.first_name} {doctor.last_name}
+              Bác sĩ : {doctor.name}
             </h2>
             <p>Thông tin : {doctor.description}</p>
             <p>Địa chỉ : {doctor.address}</p>
