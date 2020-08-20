@@ -23,8 +23,7 @@ export default function SearchInput(props) {
       setOptionList(listOptions)
     })
   }, [])
-
-  const onSearch = (value) => {
+  const onSearch = (value) => { 
     history.push(`/search?name=${value}`)
   }
 

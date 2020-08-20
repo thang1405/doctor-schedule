@@ -55,10 +55,12 @@ function DoctorDetail({ match }) {
   }
   if (loading) {
     return (
-      <HomeLayout className="spin-loading">
-        <Spin>
-          <Empty className='empty'/>
-        </Spin>
+      <HomeLayout>
+        <div className="empty">
+          <Spin size='large'>
+            <Empty />
+          </Spin>
+        </div>
       </HomeLayout>
     )
   }

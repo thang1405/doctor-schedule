@@ -1,43 +1,69 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
-import { Breadcrumb, Empty } from 'antd'
+import { Breadcrumb, Empty, Spin } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 
 import HomeLayout from '../../page/app/HomeLayout'
 import DoctorCard from '../../components/DoctorCard'
+import PaginationCustom from '../../components/Pagination'
 import '../../css/Doctor.css'
 import { notificationErrorNetwork } from '../../util/notification'
 
-import { getSearchParams } from '../../service/DoctorServices'
+import { getParams } from '../../service/DoctorServices'
 
 function Searching(props) {
   const location = useLocation()
 
+  const queryValue = queryString.parse(location.search).name
+
+  const [loading, setLoading] = useState(true)
   const [searchList, setSearchList] = useState({})
+  const [pagination, setPagination] = useState({
+    _page: 1,
+    _limit: 12,
+    _totalRow: 0,
+  })
+
+  const [filters, setFilter] = useState({
+    _page: 1,
+    _limit: 12,
+    name_like: queryValue,
+  })
 
   useEffect(() => {
-    const queryValue = queryString.parse(location.search)
-    const { name } = queryValue
-    getSearchParams(name)
+    getParams(filters)
       .then((res) => {
         const { data } = res
-        const list = FilterData(data, name)
-        console.log(list)
-        setSearchList(list)
+        setSearchList(data)
+        setLoading(false)
+        setPagination((prev) => {
+          return { ...prev, _page: filters._page }
+        })
+        window.scrollTo(0, 0)
       })
       .catch((e) => {
         console.log(e)
         notificationErrorNetwork()
       })
-  }, [location])
+  }, [filters, queryValue])
 
-  const FilterData = (data, name) => {
-    return data.filter((i) => {
-      const full_name = (i.first_name + ' ' + i.last_name).toLowerCase()
-      return full_name.indexOf(name) !== -1
-    })
-  }
+  useEffect(() => {
+    if (!pagination._totalRow) {
+      getParams({ name_like: queryValue })
+        .then((res) => {
+          const { data } = res
+          setPagination((prev) => {
+            return { ...prev, _totalRow: data.length }
+          })
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    } else if (queryValue !== filters.name_like) {
+      window.location.reload()
+    }
+  }, [queryValue, pagination._totalRow, filters.name_like])
 
   let cardRender =
     searchList.length > 0
@@ -50,12 +76,23 @@ function Searching(props) {
         ))
       : null
 
-  if (!searchList.length) {
+  if (loading || !searchList.length) {
     return (
       <HomeLayout>
-        <Empty className="empty" />
+        <div className="empty">
+          <Spin size='large'>
+            <Empty />
+          </Spin>
+        </div>
       </HomeLayout>
     )
+  }
+
+  const handerPageChange = (newPage) => {
+    setFilter({
+      ...filters,
+      _page: newPage,
+    })
   }
 
   return (
@@ -67,13 +104,19 @@ function Searching(props) {
               <Breadcrumb.Item>
                 <Link to={'/'}>Home</Link>
               </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                Tìm kiếm
-              </Breadcrumb.Item>
+              <Breadcrumb.Item>Tìm kiếm</Breadcrumb.Item>
             </Breadcrumb>
           </Col>
         </Row>
         <Row>{cardRender}</Row>
+        {pagination._totalRow > pagination._limit ? (
+          <Row>
+            <PaginationCustom
+              pagination={pagination}
+              onPageChange={handerPageChange}
+            />
+          </Row>
+        ) : null}
       </Container>
     </HomeLayout>
   )

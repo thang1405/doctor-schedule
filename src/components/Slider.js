@@ -55,7 +55,7 @@ const Slider = (props) => {
       >
         <img src={item.src} className="image-slider" alt={item.altText} />
         <CarouselCaption
-          // captionText={item.text}
+          captionText={item.text}
           // captionHeader={item.caption}
         />
       </CarouselItem>

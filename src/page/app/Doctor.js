@@ -61,9 +61,11 @@ function Doctor() {
   if (!pagination._totalRow) {
     return (
       <HomeLayout>
-        <Spin>
-          <Empty className="empty" />
-        </Spin>
+        <div className="empty">
+          <Spin size='large'>
+            <Empty />
+          </Spin>
+        </div>
       </HomeLayout>
     )
   }
@@ -84,7 +86,7 @@ function Doctor() {
         </Row>
         <Row>
           {doctors.map((item) => (
-            <Col className='col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4' key={item.id}>
+            <Col className="col-12" sm={12} md={6} lg={6} xl={4} key={item.id}>
               <Link to={`/doctor/${item.id}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>

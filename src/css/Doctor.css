@@ -2,7 +2,9 @@
   margin: 20px 0px;
 }
 .empty{
-  padding: 40px
+    position: fixed;
+    top: 40%;
+    left:40%
 }
 .spin-loading {
   align-content: center;

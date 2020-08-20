@@ -25,6 +25,3 @@ export const deleteDoctor = (id) => {
   return fetcher.delete(`/doctors/${id}`)
 }
 
-export const getSearchParams = (value) => {
-  return fetcher.get(`/doctors?q=${value}`)
-}
