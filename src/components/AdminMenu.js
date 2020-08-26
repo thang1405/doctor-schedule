@@ -18,7 +18,7 @@ function AdminMenu() {
           <Menu.Item key="schedule">
             <Link to="/admin/manage-schedule">Quản lý đơn hẹn</Link>
           </Menu.Item>
-          <Menu.Item key="homePage">
+          <Menu.Item key="homePage"z>
             <Link to="/">Home Page</Link>
           </Menu.Item>
           <Menu.Item key="logout">

@@ -2,18 +2,14 @@ import React from 'react'
 import { Card } from 'antd'
 import '../css/Horizontal.css'
 import '../css/Card.css'
-import { specialist } from '../util/content'
+import { getSpecialist } from '../util/content'
+import { joinString } from '../util/decription'
 // list of items
-const list = specialist
 const { Meta } = Card
 
 function DoctorCard(props) {
   const { info } = props
-
-  const getSpecialist = () => {
-    return list[info.specialist_id]
-  }
-
+  const specialist = getSpecialist(info.specialist_id)
   return (
     <div className="card-main">
       <Card
@@ -26,7 +22,7 @@ function DoctorCard(props) {
           <img
             alt="example"
             className="icon-specialist-doctor"
-            src={getSpecialist().icon}
+            src={specialist.icon}
           />
         </div>
         <div className="meta-doctor">
@@ -34,10 +30,9 @@ function DoctorCard(props) {
             title={<h4 className="meta-title">{info.name}</h4>}
             description={
               <div>
-                <h5>Chuyên khoa : {getSpecialist().value}</h5>
+                <h5>{joinString(info.degree)}</h5>
                 <p>Địa chỉ bệnh viện : {info.address}</p>
                 <p>Năm kinh nghiệm : {info.years_work} </p>
-                <p>Nơi tốt nghiệp : {info.graduation_place} </p>
               </div>
             }
           />

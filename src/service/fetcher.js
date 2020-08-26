@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://mock-db.herokuapp.com/",
+  baseURL: "http://localhost:1000/",
   headers: {
     "Content-type": "application/json"
   }

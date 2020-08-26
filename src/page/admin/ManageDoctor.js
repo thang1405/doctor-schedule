@@ -17,12 +17,12 @@ function ManageDoctor(props) {
   const [visible, setVisible] = useState(false)
   const [pagination, setPagination] = useState({
     _page: 1,
-    _limit: 9,
+    _limit: 12,
     _totalRow: 0,
   })
   const [filter, setFilter] = useState({
     _page: 1,
-    _limit: 9,
+    _limit: 12,
   })
 
   const history = useHistory()
@@ -88,10 +88,11 @@ function ManageDoctor(props) {
     const time = values.workTime.map((item) => {
       return [item[0].format('HH:mm'), item[1].format('HH:mm')]
     })
+    const imageNull = 'https://i.imgur.com/D1Na1n8.jpg'
     const data = {
       ...values,
       workTime: time,
-      imageUrl: 'http://dummyimage.com/400x300.jpg/ff4444/ffffff',
+      imageUrl: values.imageUrl ? values.imageUrl : imageNull,
     }
     // console.log(data)
     postDoctor(data)
@@ -120,6 +121,7 @@ function ManageDoctor(props) {
           <ModalFormAdmin
             label="Thêm bác sĩ"
             visible={visible}
+            isNew = {true}
             onSubmit={onAddDoctor}
             onCancel={() => {
               setVisible(false)
@@ -128,7 +130,7 @@ function ManageDoctor(props) {
         </Row>
         <Row>
           {doctor.map((item) => (
-            <Col sm="4" key={item.id}>
+            <Col className="col-12" sm={12} md={6} lg={6} xl={4} key={item.id}>
               <Link to={`/admin/manage-doctor/${item.id}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>

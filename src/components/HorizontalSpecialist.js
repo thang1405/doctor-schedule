@@ -13,7 +13,7 @@ function SpecialistCard({ current }) {
   const history = useHistory()
   const { key, value, decription, short_decription, imageUrl,icon } = current
   return (
-    <Col className="card-main col-12 col-sm-12 col-md-6 col-lg-3" key={key}>
+    <Col className="card-main" sm={12} md={6} lg={3} key={key}>
       <Card
         cover={<img alt="example" className="avatar-specialist" src={imageUrl} />}
         hoverable

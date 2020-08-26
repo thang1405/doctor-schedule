@@ -7,6 +7,7 @@ import {
   NavItem,
   NavLink,
   Container,
+  NavbarBrand
 } from 'reactstrap'
 
 import SearchInput from '../components/SearchInput'
@@ -19,8 +20,9 @@ const TopMenu = (props) => {
 
   return (
     <div className="top-menu">
-      <Navbar color="light" light expand="md">
+      <Navbar className='sticky-top' color="light" id="navbar" light expand="md">
         <Container>
+        <NavbarBrand href="/">NEEL</NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>

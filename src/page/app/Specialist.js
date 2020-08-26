@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
-import { Breadcrumb, Empty, Spin } from 'antd'
+import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 
+import LoadingPage from '../../components/LoadingPage'
 import HomeLayout from '../../page/app/HomeLayout'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
@@ -69,13 +70,7 @@ function Specialist({ match }) {
 
   if (!pagination._totalRow) {
     return (
-      <HomeLayout>
-        <div className="empty">
-          <Spin size="large">
-            <Empty />
-          </Spin>
-        </div>
-      </HomeLayout>
+      <LoadingPage/>
     )
   }
   return (

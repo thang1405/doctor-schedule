@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
-import { Breadcrumb, Empty, Spin } from 'antd'
+import { Breadcrumb } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 
+import LoadingPage from '../../components/LoadingPage'
 import HomeLayout from '../../page/app/HomeLayout'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
@@ -78,13 +79,7 @@ function Searching(props) {
 
   if (loading || !searchList.length) {
     return (
-      <HomeLayout>
-        <div className="empty">
-          <Spin size='large'>
-            <Empty />
-          </Spin>
-        </div>
-      </HomeLayout>
+      <LoadingPage/>
     )
   }
 
