@@ -1,32 +1,31 @@
 import React from 'react'
+import { Pagination } from 'antd'
+import '../css/Pagination.css'
 
-function Pagination(props) {
-  const { pagination, onPageChange } = props;
-  const { _page, _limit,_totalRow } = pagination;
-  const totalPages = Math.ceil(_totalRow/_limit);
+function PaginationCustom(props) {
+  const { pagination, onPageChange } = props
+  const { _page, _limit, _totalRow } = pagination
 
-  const handlePageChange=(newPage)=>{
-    if(onPageChange){
-      onPageChange(newPage);
+  function onChange(page, pageSize) {
+    handlePageChange(page)
+  }
+
+  const handlePageChange = (newPage) => {
+    if (onPageChange) {
+      onPageChange(newPage)
     }
   }
-  // console.log(props);
+
   return (
-    <div style={{width:'100%',height : '30px'}}>
-      <button 
-        disabled={_page === 1} 
-        onClick={()=> handlePageChange(_page - 1)}
-      >
-        Prev
-      </button>
-      <button 
-        disabled={_page === totalPages } 
-        onClick={()=> handlePageChange(_page + 1)}
-      >
-        Next
-      </button>
+    <div className='pagination'>
+      <Pagination
+        pageSize={_limit}
+        defaultCurrent={_page}
+        total={_totalRow}
+        onChange={onChange}
+      />
     </div>
   )
 }
 
-export default Pagination
+export default PaginationCustom

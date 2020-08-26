@@ -1,0 +1,97 @@
+.bread-crumb {
+  margin: 20px 0px;
+}
+
+/* doctor detail */
+.background-doctor {
+  padding-top: 60px;
+  height: 180px;
+  background-color: #0cb8b6;
+  background-image: url(http://medicare.bold-themes.com/clinic/wp-content/uploads/sites/2/2015/12/bgn-grad.png);
+}
+/* text  */
+.text {
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Source Serif Pro';
+}
+.text-name {
+  font-size: 35px;
+  color: #ffffff;
+}
+
+.short-decription{
+  color: #444444;
+  margin-bottom: 0px;
+}
+
+.decription{
+  color: #444444;
+  font-size: 14px;
+}
+
+.contact-text{
+  color: #444444;
+  font-size: 14px;
+}
+/* card */
+.avatar-doctor-detail {
+  height: 350px;
+  object-fit: cover;
+}
+
+.card-avatar {
+  position: relative;
+  top: -125px;
+}
+
+.big-icon-doctor {
+  width: 60px;
+  height: 60px;
+  background-color: #0cb8b6;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  position: relative;
+  top: -54px;
+  display: block;
+  position: relative;
+  text-align: center;
+}
+
+.icon-specialist-doctor {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 24%;
+}
+
+.meta-doctor {
+  margin-top: -40px;
+  min-height: 120px;
+}
+.meta-doctor p {
+  margin-bottom: 10px;
+}
+
+.contact{
+  display: inline-block;
+}
+.icon{
+  font-size: 25px;
+  padding-bottom:10px
+}
+
+.icon:hover{
+  color: #14aca9;
+}
+
+/* decription col */
+.div-description{
+  padding-top : 22px
+}
+.multi-col {
+  border-bottom: 1px solid #d3cdcd;
+  padding: 20px 0px;
+  border-top: 1px solid #d3cdcd;
+}
+
