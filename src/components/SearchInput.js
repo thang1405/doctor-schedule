@@ -9,8 +9,8 @@ import '../css/Search.css'
 const { Search } = Input
 
 export default function SearchInput(props) {
-  const [optionList, setOptionList] = useState([])
-
+  const [ListDoctors, setListDoctors] = useState([])
+  const [options, setOptions] = useState([])
   const history = useHistory()
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function SearchInput(props) {
         value: i.name,
         key: i.id,
       }))
-      setOptionList(listOptions)
+      setListDoctors(listOptions)
     })
   }, [])
   const onSearch = (value) => { 
@@ -30,19 +30,27 @@ export default function SearchInput(props) {
   const onSelect = (key) => {
     history.push(`/doctor/${key}`)
   }
+  const onSearchComplete = (value)=>{
+    if(value){
+      const list = ListDoctors.filter(i=>{
+        return i.value.search(value) !== -1 
+      })
+      setOptions(list)
+    }else{
+      setOptions([])
+    }
+  }
+
   return (
     <AutoComplete
-      style={{ width: 350 }}
-      options={optionList}
-      filterOption={(inputValue, option) =>
-        option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-      }
+      className='input'
+      options={options}
       onSelect={(value,option) => {
         onSelect(option.key)
       }}
+      onSearch={(value) => onSearchComplete(value)}
     >
       <Search
-        className="input"
         size="large"
         placeholder="Nhập tên bác sĩ"
         onSearch={(value) => onSearch(value)}

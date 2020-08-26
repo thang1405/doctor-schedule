@@ -4,6 +4,7 @@ import { Container } from 'reactstrap'
 import Slider from '../../components/Slider'
 import HorizontalIntroduce from '../../components/HorizontalIntroduce'
 import HorizontalSpecialist from '../../components/HorizontalSpecialist'
+import HorizonalDoctors from '../../components/HorizonalDoctors'
 import HomeLayout from '../../page/app/HomeLayout'
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
       <Container>
         <HorizontalIntroduce />
         <HorizontalSpecialist/>
+        <HorizonalDoctors/>
       </Container>
     </HomeLayout>
   )

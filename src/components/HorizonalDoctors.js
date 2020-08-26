@@ -1,43 +1,46 @@
-import React from 'react'
-import { Card } from 'antd'
+import React, { useEffect, useState } from 'react'
 import { Row, Col } from 'reactstrap'
-import { specialist } from '../util/content'
-
+import { useHistory } from 'react-router-dom'
+import DoctorCard from '../components/DoctorCard'
 import '../css/Horizontal.css'
-// list of items
-const list = specialist
 
-const { Meta } = Card
-function SpecialistCard({ current }) {
-  const { key, value, decription, short_decription, imageUrl } = current
-  return (
-    <Col className="card-main col-12 col-sm-12 col-md-6 col-lg-3" key={key}>
-      <Card
-        cover={<img alt="example" className="avatar-img" src={imageUrl} />}
-        hoverable
-      >
-        <Meta
-          title={
-            <div>
-              <p>{short_decription}</p>
-              <h3>{value}</h3>
-            </div>
-          }
-          description={<p>{decription}</p>}
-        />
-      </Card>
-    </Col>
-  )
-}
+import { getParams } from '../service/DoctorServices'
 
-function HorizontalSpecialist(props) {
+function HorizonalDoctors(props) {
+  const history = useHistory()
+  const [doctors, setDoctors] = useState([])
+
+  useEffect(() => {
+    getParams({ _limit: 4 })
+      .then((res) => {
+        const {data} = res
+        setDoctors(data)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }, [])
+
   return (
     <Row className="specialist">
-      {list.map((i) => (
-        <SpecialistCard key={i.key} current={i} />
-      ))}
+      {doctors.map((item) => {
+        return (
+          <Col
+            className="card-main"
+            sm={12}
+            md={6}
+            lg={3}
+            onClick={() => {
+              history.push(`/doctor/${item.id}`)
+            }}
+            key={item.id}
+          >
+            <DoctorCard info={item}/>
+          </Col>
+        )
+      })}
     </Row>
   )
 }
 
-export default HorizontalSpecialist
+export default HorizonalDoctors

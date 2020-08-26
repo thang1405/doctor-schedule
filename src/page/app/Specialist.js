@@ -75,7 +75,7 @@ function Specialist({ match }) {
   }
   return (
     <HomeLayout>
-      <Container className="main">
+      <Container>
         <Row>
           <Col className="bread-crumb">
             <Breadcrumb>
