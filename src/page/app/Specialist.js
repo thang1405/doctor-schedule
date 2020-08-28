@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
 import { Breadcrumb } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link , useHistory} from 'react-router-dom'
 
 import {LoadingPage} from '../../components/LoadingPage'
 import HomeLayout from '../../page/app/HomeLayout'
@@ -11,11 +11,11 @@ import '../../css/Doctor.css'
 import { notificationErrorNetwork } from '../../util/notification'
 
 import { getParams } from '../../service/DoctorServices'
-import { specialist } from '../../util/content'
-// list of items
-const list = specialist
+import { getSpecialist } from '../../util/content'
+import { convertString } from '../../util/Validator'
 
 function Specialist({ match }) {
+  
   const [doctors, setDoctors] = useState([])
   const [pagination, setPagination] = useState({
     _page: 1,
@@ -27,6 +27,10 @@ function Specialist({ match }) {
     _limit: 12,
     specialist_id : match.params.id
   })
+
+  const history = useHistory()
+
+  const current  = getSpecialist(match.params.id)
 
   useEffect(() => {
     getParams(filters)
@@ -45,6 +49,9 @@ function Specialist({ match }) {
   }, [filters])
 
   useEffect(() => {
+    if(convertString(current.value) !== match.params.specialist ){
+      history.replace('/no-match')
+    }
     getParams({specialist_id : match.params.id})
       .then((res) => {
         const { data } = res
@@ -55,17 +62,13 @@ function Specialist({ match }) {
       .catch((e) => {
         console.log(e)
       })
-  }, [match.params.id])
+  }, [match,history,current])
 
   const handerPageChange = (newPage) => {
     setFilter({
       ...filters,
       _page: newPage,
     })
-  }
-
-  const getSpecialist = () => {
-    return list[ match.params.id].value
   }
 
   if (!pagination._totalRow) {
@@ -83,7 +86,7 @@ function Specialist({ match }) {
                 <Link to={'/'}>Home</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
-                Khoa {getSpecialist().toLowerCase()}
+                Khoa {current.value.toLowerCase()}
               </Breadcrumb.Item>
             </Breadcrumb>
           </Col>
@@ -91,7 +94,7 @@ function Specialist({ match }) {
         <Row>
           {doctors.map((item) => (
             <Col className="col-12"  sm={12} md={6} lg={4} xl={4} key={item.id}>
-              <Link to={`/doctor/${item.id}`}>
+              <Link to={`/doctor/${item.id}-${convertString(item.name)}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>
             </Col>

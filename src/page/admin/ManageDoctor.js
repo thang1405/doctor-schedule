@@ -10,6 +10,8 @@ import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
 import ModalFormAdmin from '../../components/ModalFormAdmin'
 import { notificationErrorNetwork } from '../../util/notification'
+import { convertString } from '../../util/Validator'
+
 import '../../css/Doctor.css'
 
 import { getParams, getAll, postDoctor } from '../../service/DoctorServices'
@@ -131,7 +133,7 @@ function ManageDoctor(props) {
         <Row>
           {doctor.map((item) => (
             <Col className="col-12" sm={12} md={6} lg={6} xl={4} key={item.id}>
-              <Link to={`/admin/manage-doctor/${item.id}`}>
+              <Link to={`/admin/manage-doctor/${item.id}-${convertString(item.name)}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>
             </Col>

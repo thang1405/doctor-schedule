@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import { Button, message, Card, Space } from 'antd'
 import { PhoneFilled, MailFilled, AimOutlined } from '@ant-design/icons'
+import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 
 import {LoadingPage} from '../../components/LoadingPage'
 import ModalForm from '../../components/ModalForm'
 import HomeLayout from '../../page/app/HomeLayout'
-import { getSpecialist } from '../../util/content.js'
+
 import '../../css/Doctor.css'
 
 import { getId } from '../../service/DoctorServices'
 import { postSchedule } from '../../service/ScheduleServices'
 import { splitString,joinString } from '../../util/decription'
+import { getSpecialist } from '../../util/content.js'
+import { convertString } from '../../util/Validator'
 
 const { Meta } = Card
 
@@ -20,18 +23,25 @@ function DoctorDetail({ match }) {
   const [doctor, setDoctor] = useState({})
   const [visible, setVisible] = useState(false)
   const [loading, setLoading] = useState(true)
+  const history = useHistory()
 
   useEffect(() => {
+    setLoading(true)
     getId(match.params.id)
       .then((res) => {
         const { data } = res
         setDoctor(data)
         setLoading(false)
+        if(convertString(data.name) !== match.params.doctor ){
+          history.replace('/no-match')
+        }
+        window.scrollTo(0, 0)
       })
       .catch((error) => {
         console.log(error)
+        history.push('/no-match')
       })
-  }, [match])
+  }, [match,history])
 
   const onCreateSchedule = (values) => {
     const date = moment(values.date).format('YYYY-MM-DD')

@@ -1,6 +1,6 @@
-export const splitString = (str)=>{
-  return str.split("\n")
+export const splitString = (str) => {
+  return str.split('\n')
 }
-export const joinString = (arr)=>{
-  return arr.join(", ")
+export const joinString = (arr) => {
+  return arr.join(', ')
 }

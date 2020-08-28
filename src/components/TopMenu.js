@@ -18,6 +18,8 @@ import SearchInput from '../components/SearchInput'
 
 import '../css/Menu.css'
 import { specialist } from '../util/content'
+import { convertString } from '../util/Validator'
+
 const TopMenu = (props) => {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
@@ -50,7 +52,7 @@ const TopMenu = (props) => {
                   {specialist.map((item, index) => {
                     return (
                       <DropdownItem key={index} >
-                        <NavLink href={`/specialist/${index}`}>{item.value}</NavLink>
+                        <NavLink href={`/specialist/${item.key}-${convertString(item.value)}`}>{item.value}</NavLink>
                       </DropdownItem>
                     )
                   })}

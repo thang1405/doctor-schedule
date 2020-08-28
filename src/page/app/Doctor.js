@@ -9,6 +9,7 @@ import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
 import '../../css/Doctor.css'
 import { notificationErrorNetwork } from '../../util/notification'
+import { convertString } from '../../util/Validator'
 
 import { getParams, getAll } from '../../service/DoctorServices'
 
@@ -82,7 +83,7 @@ function Doctor() {
         <Row>
           {doctors.map((item) => (
             <Col className="col-12" sm={12} md={6} lg={4} xl={4} key={item.id}>
-              <Link to={`/doctor/${item.id}`}>
+              <Link to={`/doctor/${item.id}-${convertString(item.name)}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>
             </Col>

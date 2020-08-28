@@ -90,3 +90,7 @@
     text-align:center
   }
 }
+li:hover{
+  color: #3366cc;
+  cursor: pointer;
+}

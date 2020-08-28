@@ -1,5 +1,9 @@
 import React from 'react'
 import '../css/Footer.css'
+import { specialist } from '../util/content'
+import { Link } from 'react-router-dom'
+
+import { convertString } from '../util/Validator'
 
 export default function () {
   return (
@@ -7,24 +11,41 @@ export default function () {
       <footer className="site-footer">
         <div className="container">
           <div className="row">
-            <div className="col-sm-12 col-md-8">
+            <div className="col-sm-12 col-md-6">
               <h6>About</h6>
               <p className="text-justify">
-                Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative
-                to help the upcoming programmers with the code. Scanfcode
-                focuses on providing the most efficient code or snippets as the
-                code wants to be simple. We will help programmers build up
-                concepts in different programming languages that include C, C++,
-                Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and
-                Algorithm.
+                Quisque posuere rhoncus erat, sit amet aliquet augue. Donec eros
+                massa, gravida ac lectus et, pharetra interdum lectus. Sed vel
+                scelerisque quam, id fringilla ante. Vivamus sagittis velit quis
+                dictum ultricies.
               </p>
             </div>
 
-            <div className="col-xs-6 col-md-4">
+            <div className="col-xs-6 col-md-3">
               <h6>Quick Links</h6>
               <ul className="footer-links">
-                <li>Home</li>
-                <li>Bác sĩ</li>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="doctor">Bác sĩ</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="col-xs-6 col-md-3">
+              <h6>Chuyên khoa</h6>
+              <ul className="footer-links">
+                {specialist.map((item) => (
+                  <li key={item.key}>
+                    <Link
+                      to={`/specialist/${item.key}-${convertString(
+                        item.value
+                      )}`}
+                    >
+                      {item.value}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

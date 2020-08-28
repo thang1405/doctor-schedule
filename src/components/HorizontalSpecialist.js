@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import Carousel from 'react-multi-carousel'
 
 import 'react-multi-carousel/lib/styles.css'
+import {convertString} from '../util/Validator'
 import '../css/Horizontal.css'
 
 // list of items
@@ -40,7 +41,7 @@ function SpecialistCard({ current }) {
       <Card
         cover={<img alt="example" className="avatar-specialist" src={imageUrl} />}
         hoverable
-        onClick={()=>{history.push(`/specialist/${key}`)}}
+        onClick={()=>{history.push(`/specialist/${key}-${convertString(value)}`)}}
       >
         <div className="big-icon">
           <img

@@ -9,7 +9,7 @@ import {
 import moment from 'moment'
 import ModalForm from './ModalForm'
 
-import { Button,message } from 'antd'
+import { Button, message } from 'antd'
 
 import { postSchedule } from '../service/ScheduleServices'
 import '../css/Slider.css'
@@ -80,18 +80,30 @@ const Slider = (props) => {
         onExited={() => setAnimating(false)}
         key={index}
       >
-        
         <img src={item.src} className="image-slider" alt={item.altText} />
-        <CarouselCaption captionText={item.text} captionHeader={!index ? (
-          <Button
-            onClick={() => {
-              setVisible(true)
-              setAnimating(false)
-            }}
-          >
-            Đăng ký khám ngay
-          </Button>
-        ) : null} />
+        <CarouselCaption
+          captionHeader={
+              <div >
+              {!index ? (
+                <Button
+                className='slider-btn'
+                  onClick={() => {
+                    setVisible(true)
+                    setAnimating(false)
+                  }}
+                  type="primary"
+                  size="large"
+                  shape="round"
+                >
+                  Đăng ký khám ngay
+                </Button>
+              ):null}
+                
+                <h3 className='caption'>{item.caption}</h3>
+              </div>
+          }
+          captionText=''
+        />
         <ModalForm
           info={null}
           visible={visible}

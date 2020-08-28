@@ -7,3 +7,9 @@
   height: 500px;
   object-fit: cover
 }
+.slider-btn{
+  display: block;
+}
+.caption{
+  columns: #444444;;
+}

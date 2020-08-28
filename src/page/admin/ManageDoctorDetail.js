@@ -16,6 +16,7 @@ import {
   deleteDoctor,
 } from '../../service/DoctorServices'
 import { splitString, joinString } from '../../util/decription'
+import { convertString } from '../../util/Validator'
 
 const { Meta } = Card
 
@@ -32,11 +33,15 @@ function ManageDoctorDetail({ match }) {
         const { data } = res
         setDoctor(data)
         setLoading(false)
+        if(convertString(data.name) !== match.params.doctor ){
+          history.replace('/no-match')
+        }
       })
       .catch((error) => {
         console.log(error)
+        history.push('/no-match')
       })
-  }, [match])
+  }, [match,history])
 
   const onRepair = (values) => {
     const time = values.workTime.map((item) => {
@@ -52,6 +57,7 @@ function ManageDoctorDetail({ match }) {
       .catch((e) => {
         message.error('Đổi thông tin thất bại')
         console.log(e)
+        
       })
   }
 

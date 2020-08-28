@@ -3,12 +3,13 @@ import { Input, AutoComplete } from 'antd'
 
 import { getAll } from '../service/DoctorServices'
 import { useHistory } from 'react-router-dom'
+import {convertString} from '../util/Validator'
 
 import '../css/Search.css'
 
 const { Search } = Input
 
-export default function SearchInput(props) {
+function SearchInput(props) {
   const [ListDoctors, setListDoctors] = useState([])
   const [options, setOptions] = useState([])
   const history = useHistory()
@@ -27,9 +28,10 @@ export default function SearchInput(props) {
     history.push(`/search?name=${value}`)
   }
 
-  const onSelect = (key) => {
-    history.push(`/doctor/${key}`)
+  const onSelect = (item) => {
+    history.push(`/doctor/${item.key}-${convertString(item.value)}`)
   }
+
   const onSearchComplete = (value)=>{
     if(value){
       const list = ListDoctors.filter(i=>{
@@ -46,7 +48,7 @@ export default function SearchInput(props) {
       className='input'
       options={options}
       onSelect={(value,option) => {
-        onSelect(option.key)
+        onSelect(option)
       }}
       onSearch={(value) => onSearchComplete(value)}
     >
@@ -58,3 +60,4 @@ export default function SearchInput(props) {
     </AutoComplete>
   )
 }
+export default SearchInput

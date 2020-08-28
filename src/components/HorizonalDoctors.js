@@ -7,6 +7,7 @@ import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
 import '../css/Horizontal.css'
 
+import {convertString} from '../util/Validator'
 import { getParams } from '../service/DoctorServices'
 
 const responsive = {
@@ -73,7 +74,7 @@ function HorizonalDoctors(props) {
             <Col key={item.id}>
               <div
                 onClick={() => {
-                  history.push(`/doctor/${item.id}`)
+                  history.push(`/doctor/${item.id}-${convertString(item.name)}`)
                 }}
               >
                 <DoctorCard info={item} />
