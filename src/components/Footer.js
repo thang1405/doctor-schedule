@@ -24,10 +24,10 @@ export default function () {
             <div className="col-xs-6 col-md-3">
               <h6>Quick Links</h6>
               <ul className="footer-links">
-                <li>
+                <li className='footer-li'>
                   <Link to="/">Home</Link>
                 </li>
-                <li>
+                <li className='footer-li'>
                   <Link to="doctor">Bác sĩ</Link>
                 </li>
               </ul>
@@ -36,7 +36,7 @@ export default function () {
               <h6>Chuyên khoa</h6>
               <ul className="footer-links">
                 {specialist.map((item) => (
-                  <li key={item.key}>
+                  <li className='footer-li' key={item.key}>
                     <Link
                       to={`/specialist/${item.key}-${convertString(
                         item.value

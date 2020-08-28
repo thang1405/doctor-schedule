@@ -23,7 +23,9 @@ button:not(:disabled) {
   .avatar-doctor-detail {
     height: 300px;
   }
-  
+  .input {
+    width : 100%
+  }
 }
 
 @media (min-width: 576px) {
@@ -39,6 +41,9 @@ button:not(:disabled) {
   .avatar-doctor,
   .avatar-doctor-detail {
     height: 600px;
+  }
+  .input {
+    width : 400px
   }
 }
 
