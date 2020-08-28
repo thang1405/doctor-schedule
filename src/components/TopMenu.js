@@ -37,10 +37,10 @@ const TopMenu = (props) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/">Trang chủ</NavLink>
+                <NavLink href="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/doctor">Danh sách bác sĩ</NavLink>
+                <NavLink href="/doctor">Bác sĩ</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>

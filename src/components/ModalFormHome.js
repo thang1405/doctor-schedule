@@ -2,21 +2,17 @@ import { Modal, Form, Select, Input } from 'antd'
 import React from 'react'
 
 import '../css/ModalForm.css'
-import DisableTime from './DisableTime'
-
 import DoctorComplete from './DoctorComplete'
-
 import { vietnamese , phoneNumber } from '../util/Validator'
 
-export default function ModalForm(props) {
-  const { visible, onCreate, onCancel, info } = props
+export default function ModalFormHome(props) {
+  const { visible, onCreate, onCancel } = props
 
   const [form] = Form.useForm()
 
   return (
     <div className="button-schedule">
       <Modal
-        title={info ? info.name : "Đăng ký khám"}
         style={{ top: 10 }}
         width={650}
         visible={visible}
@@ -106,9 +102,7 @@ export default function ModalForm(props) {
             </Select>
           </Form.Item>
 
-          {
-            info ? <DisableTime workTime={info.workTime} doctorId={info.id} /> : <DoctorComplete />
-          }
+          <DoctorComplete />
 
           <Form.Item label="Lý do" name="reason">
             <Input.TextArea rows={4} />

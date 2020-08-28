@@ -6,6 +6,12 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from 'reactstrap'
+import moment from 'moment'
+import ModalForm from './ModalForm'
+
+import { Button,message } from 'antd'
+
+import { postSchedule } from '../service/ScheduleServices'
 import '../css/Slider.css'
 
 const items = [
@@ -14,18 +20,21 @@ const items = [
     altText: 'Slide 1',
     caption: 'Healthy heart,healthy family',
     key: '1',
-    text: 'Globally harness multimedia based collaboration and idea-sharing with backend products. Continually whiteboard superior opportunities via covalent scenarios.',
+    text:
+      'Globally harness multimedia based collaboration and idea-sharing with backend products. Continually whiteboard superior opportunities via covalent scenarios.',
   },
   {
     src: 'https://i.imgur.com/NjsLNWk.jpg',
     altText: 'Slide 2',
     caption: 'Your wealth,is your health',
     key: '2',
-    text: 'Globally harness multimedia based collaboration and idea-sharing with backend products. Continually whiteboard superior opportunities via covalent scenarios.',
-  }
+    text:
+      'Globally harness multimedia based collaboration and idea-sharing with backend products. Continually whiteboard superior opportunities via covalent scenarios.',
+  },
 ]
 
 const Slider = (props) => {
+  const [visible, setVisible] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [animating, setAnimating] = useState(false)
 
@@ -46,17 +55,50 @@ const Slider = (props) => {
     setActiveIndex(newIndex)
   }
 
-  const slides = items.map((item) => {
+  const onCreateSchedule = (values) => {
+    const date = moment(values.date).format('YYYY-MM-DD')
+
+    const data = { ...values, date: date }
+    console.log(data)
+    setVisible(false)
+    postSchedule(data)
+      .then((res) => {
+        console.log(res)
+        message.success('Đăng ký lịch khám thành công')
+        window.location.reload()
+      })
+      .catch((e) => {
+        console.log(e)
+        message.error('Đăng ký lịch khám thất bại')
+      })
+  }
+
+  const slides = items.map((item, index) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item.src}
+        key={index}
       >
+        
         <img src={item.src} className="image-slider" alt={item.altText} />
-        <CarouselCaption
-          captionText={item.text}
-          // captionHeader={item.caption}
+        <CarouselCaption captionText={item.text} captionHeader={!index ? (
+          <Button
+            onClick={() => {
+              setVisible(true)
+              setAnimating(false)
+            }}
+          >
+            Đăng ký khám ngay
+          </Button>
+        ) : null} />
+        <ModalForm
+          info={null}
+          visible={visible}
+          onCreate={onCreateSchedule}
+          onCancel={() => {
+            setVisible(false)
+          }}
         />
       </CarouselItem>
     )

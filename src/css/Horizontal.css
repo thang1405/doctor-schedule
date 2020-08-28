@@ -4,8 +4,8 @@
   color: white;
   background-image: radial-gradient(
     circle,
-    rgba(12, 156, 175, 1) 50%,
-    #006ba1 200%
+    rgba(12, 150, 168, 1) 60%,
+    #006ba1 110%
   );
 }
 
@@ -16,17 +16,18 @@
 .introduce {
   position: relative;
   top: -35px;
-  z-index:20
+  z-index: 20;
 }
 
-.decription {
+.introduce-text {
   font-size: 13px;
   padding: 0px 20px;
+  color: #fff;
 }
 
 .title-div {
   display: inline-block;
-  margin: 0px 15px 0px 15px;
+  margin: 5px;
 }
 
 .title-div::after {
@@ -42,17 +43,17 @@
   box-shadow: 0 2px 0 0 #f95759 inset;
 }
 
-.title{
+.title {
   color: #fff;
   font-family: Playfair Display;
   font-weight: 400;
 }
 /* specialist css */
-.avatar-specialist{
+.avatar-specialist {
   height: 240px;
 }
 
-.big-icon{
+.big-icon {
   width: 90px;
   height: 90px;
   background-color: #0cb8b6;
@@ -63,7 +64,7 @@
   display: block;
   margin: 0 auto;
   position: relative;
-  text-align: center
+  text-align: center;
 }
 
 .meta-specialist {
@@ -72,27 +73,25 @@
   min-height: 120px;
 }
 
-.icon-specialist{
+.icon-specialist {
   width: 40px;
   height: 40px;
   position: relative;
   top: 24%;
 }
 
-
-.short-decription{
+.short-decription {
   color: #444444;
   font-family: 'Source Serif Pro';
   font-size: 16px;
 }
 
-.meta-title{
+.meta-title {
   font-size: 22px;
-  
 }
 /* doctor card css */
 
-.big-icon-doctor{
+.big-icon-doctor {
   width: 60px;
   height: 60px;
   background-color: #0cb8b6;
@@ -102,10 +101,10 @@
   top: -54px;
   display: block;
   position: relative;
-  text-align: center
+  text-align: center;
 }
 
-.icon-specialist-doctor{
+.icon-specialist-doctor {
   width: 30px;
   height: 30px;
   position: relative;
@@ -116,6 +115,41 @@
   margin-top: -40px;
   min-height: 120px;
 }
-.meta-doctor p{
+.meta-doctor p {
   margin-bottom: 10px;
+}
+
+/* scroll */
+
+.container-horizontal {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.title-doctors {
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.title-text {
+  font-size: 35px;
+  font-weight: 700;
+}
+.title-text::after {
+  float: left;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 0 0 #0cb8b6 inset;
+  content: '';
+  clear: both;
+  width: 60px;
+  display: table;
+  height: 2px;
+  line-height: 2px;
+  overflow: hidden;
 }

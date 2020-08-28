@@ -4,7 +4,7 @@ import { Button, message, Card, Space, Popconfirm } from 'antd'
 import { PhoneFilled, MailFilled, AimOutlined } from '@ant-design/icons'
 import { useHistory } from 'react-router-dom'
 
-import LoadingPage from '../../components/LoadingPage'
+import {LoadingPageAdmin} from '../../components/LoadingPage'
 import { getSpecialist } from '../../util/content.js'
 import AdminLayout from './AdminLayout'
 import ModalFormAdmin from '../../components/ModalFormAdmin'
@@ -68,7 +68,7 @@ function ManageDoctorDetail({ match }) {
   }
 
   if (loading) {
-    return <LoadingPage />
+    return <LoadingPageAdmin />
   }
 
   const specialistDoctor = getSpecialist(doctor.specialist_id)

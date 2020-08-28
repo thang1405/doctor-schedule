@@ -4,7 +4,7 @@ import { Button, message, Card, Space } from 'antd'
 import { PhoneFilled, MailFilled, AimOutlined } from '@ant-design/icons'
 import moment from 'moment'
 
-import LoadingPage from '../../components/LoadingPage'
+import {LoadingPage} from '../../components/LoadingPage'
 import ModalForm from '../../components/ModalForm'
 import HomeLayout from '../../page/app/HomeLayout'
 import { getSpecialist } from '../../util/content.js'
@@ -70,7 +70,7 @@ function DoctorDetail({ match }) {
       </div>
       <Container>
         <Row>
-          <Col md={12} lg={4} className="card-avatar">
+          <Col md={4} sm={12} className="card-avatar">
             <Card
               bordered
               cover={
@@ -139,7 +139,7 @@ function DoctorDetail({ match }) {
               }}
             />
           </Col>
-          <Col md={12} lg={8}>
+          <Col md={8} sm={12}>
             <ul className="div-description">
               {splitString(doctor.description).map((item, index) => {
                 return (

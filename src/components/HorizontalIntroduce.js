@@ -15,7 +15,7 @@ function Item({ current }) {
           <span>{value}</span>
         </h3>
       </div>
-      <p className="decription">{decription}</p>
+      <p className="introduce-text">{decription}</p>
     </Col>
   )
 }

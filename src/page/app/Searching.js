@@ -4,7 +4,7 @@ import { Breadcrumb } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 
-import LoadingPage from '../../components/LoadingPage'
+import {LoadingPage} from '../../components/LoadingPage'
 import HomeLayout from '../../page/app/HomeLayout'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
@@ -69,7 +69,7 @@ function Searching(props) {
   let cardRender =
     searchList.length > 0
       ? searchList.map((item) => (
-          <Col sm="4" key={item.id}>
+          <Col  sm={12} md={6} lg={4} xl={4} key={item.id}>
             <Link to={`/doctor/${item.id}`}>
               <DoctorCard key={item.id} info={item} />
             </Link>

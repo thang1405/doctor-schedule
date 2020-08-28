@@ -1,0 +1,69 @@
+.image-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  padding-top: 80px;
+  background-color: #dddfde;
+  background-image: url(http://medicare.bold-themes.com/clinic/wp-content/uploads/sites/2/2015/12/bg-doktorka.jpg);
+}
+.image-doctor {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  width: 100%;
+}
+
+.title-doctor {
+  display: inline-block;
+  margin: 5px;
+}
+
+.title-doctor::after {
+  content: '';
+  clear: both;
+  width: 60px;
+  display: table;
+  float: left;
+  height: 2px;
+  line-height: 2px;
+  overflow: hidden;
+  margin: 0 auto 7px;
+  box-shadow: 0 2px 0 0 #0cb8b6 inset;
+}
+
+.doctor-text {
+  color: #444444;
+  font-family: Playfair Display;
+  font-weight: 400;
+}
+
+.comment {
+  font-size: 20px;
+  margin: 0 0 16px;
+  font-family: 'Source Serif Pro';
+  line-height: 1.55;
+  clear: both;
+}
+
+em {
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: .1em;
+  font-size: 60px;
+  line-height: 1;
+}
+
+.headline {
+  display: block;
+}
+
+.animate {
+  padding-left: 20px;
+  font-weight: 800;
+  color: #0cb8b6;
+  display: inline-block;
+  opacity: 1;
+  font-size: 60px;
+}
+

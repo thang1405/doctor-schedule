@@ -1,6 +1,21 @@
 .bread-crumb {
   margin: 20px 0px;
 }
+/* doctor */
+.btn-add{
+  width: 60px;
+  height: 60px;
+  z-index: 10;
+  background-color: #0cb8b6;
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  border-radius: 50%;
+}
+.add-icon{
+  font-size: 30px;
+  padding: 15px;
+}
 
 /* doctor detail */
 .background-doctor {
@@ -67,7 +82,7 @@
 
 .meta-doctor {
   margin-top: -40px;
-  min-height: 120px;
+  min-height: 160px;
 }
 .meta-doctor p {
   margin-bottom: 10px;

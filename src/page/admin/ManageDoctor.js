@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from 'reactstrap'
 import { Redirect, Link, useHistory } from 'react-router-dom'
-import { Empty, Button, message, Spin } from 'antd'
+import { message } from 'antd'
+import { UserAddOutlined } from '@ant-design/icons'
 
+import { LoadingPageAdmin } from '../../components/LoadingPage'
 import AdminLayout from './AdminLayout'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
@@ -11,6 +13,8 @@ import { notificationErrorNetwork } from '../../util/notification'
 import '../../css/Doctor.css'
 
 import { getParams, getAll, postDoctor } from '../../service/DoctorServices'
+
+
 
 function ManageDoctor(props) {
   const [doctor, setDoctor] = useState([])
@@ -75,13 +79,7 @@ function ManageDoctor(props) {
   }
 
   if (!pagination._totalRow) {
-    return (
-      <AdminLayout>
-        <Spin>
-          <Empty className="emplty" />
-        </Spin>
-      </AdminLayout>
-    )
+    return <LoadingPageAdmin />
   }
 
   const onAddDoctor = (values) => {
@@ -110,18 +108,20 @@ function ManageDoctor(props) {
   return (
     <AdminLayout>
       <Container>
+        
         <Row>
-          <Button
+          <div
             onClick={() => {
               setVisible(true)
             }}
+            className="btn-add"
           >
-            Thêm
-          </Button>
+            <UserAddOutlined className="add-icon" style={{ color: 'white' }} />
+          </div>
           <ModalFormAdmin
             label="Thêm bác sĩ"
             visible={visible}
-            isNew = {true}
+            isNew={true}
             onSubmit={onAddDoctor}
             onCancel={() => {
               setVisible(false)

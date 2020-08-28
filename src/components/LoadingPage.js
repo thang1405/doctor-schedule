@@ -1,13 +1,14 @@
 import React from 'react'
 import { Spin, Empty } from 'antd'
 import HomeLayout from '../page/app/HomeLayout'
+import AdminLayout from '../page/admin/AdminLayout'
 import '../css/LoadingPage.css'
 
-function LoadingPage(props) {
+export const LoadingPage=()=> {
   return (
     <div>
       <HomeLayout>
-        <div className="empty">
+        <div>
           <Spin size="large">
             <Empty />
           </Spin>
@@ -17,4 +18,17 @@ function LoadingPage(props) {
   )
 }
 
-export default LoadingPage
+export const LoadingPageAdmin = ()=> {
+  return (
+    <div>
+      <AdminLayout>
+        <div>
+          <Spin size="large">
+            <Empty />
+          </Spin>
+        </div>
+      </AdminLayout>
+    </div>
+  )
+}
+

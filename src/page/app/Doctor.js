@@ -3,7 +3,7 @@ import { Row, Col, Container } from 'reactstrap'
 import { Breadcrumb } from 'antd'
 import { Link } from 'react-router-dom'
 
-import LoadingPage from '../../components/LoadingPage'
+import {LoadingPage} from '../../components/LoadingPage'
 import HomeLayout from '../../page/app/HomeLayout'
 import DoctorCard from '../../components/DoctorCard'
 import PaginationCustom from '../../components/Pagination'
@@ -81,7 +81,7 @@ function Doctor() {
         </Row>
         <Row>
           {doctors.map((item) => (
-            <Col className="col-12" sm={12} md={6} lg={6} xl={4} key={item.id}>
+            <Col className="col-12" sm={12} md={6} lg={4} xl={4} key={item.id}>
               <Link to={`/doctor/${item.id}`}>
                 <DoctorCard key={item.id} info={item} />
               </Link>

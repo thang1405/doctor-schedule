@@ -1,0 +1,80 @@
+button:not(:disabled) {
+  outline: none;
+}
+
+.react-multiple-carousel__arrow--right {
+  right: calc(-0% + 1px);
+  z-index: 100
+}
+.react-multiple-carousel__arrow--left{
+  left: calc(0% + 1px);
+  z-index: 100
+}
+
+@media (min-width: 300px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm {
+    padding: 0px 30px;
+  }
+  .avatar-specialist,
+  .avatar-doctor,
+  .avatar-doctor-detail {
+    height: 300px;
+  }
+  
+}
+
+@media (min-width: 576px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm {
+    max-width: none;
+    width: 100%;
+    padding: 0px 30px;
+  }
+  .avatar-specialist,
+  .avatar-doctor,
+  .avatar-doctor-detail {
+    height: 600px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .avatar-specialist,
+  .avatar-doctor {
+    height: 410px;
+  }
+  .avatar-doctor-detail{
+    height: 240px;
+  }
+}
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .avatar-specialist,
+  .avatar-doctor,.avatar-doctor-detail {
+    height: 280px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm {
+    max-width: 1160px;
+  }
+  .meta-doctor {
+    min-height: 190px;
+  }
+  .avatar-doctor-detail {
+    height: 350px;
+  }
+  .avatar-specialist,
+  .avatar-doctor{
+    height: 280px;
+  }
+}
